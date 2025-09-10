@@ -7,7 +7,8 @@
       "description": "Framework para construir aplicaciones móviles nativas usando React y JavaScript para iOS y Android.",
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
       "iconBg": "#61DAFB",
-      "cardBg": "linear-gradient(135deg, #61DAFB 0%, #21759B 100%)"
+      "cardBg": "linear-gradient(135deg, #61DAFB 0%, #21759B 100%)",
+      "category": "Cross-Platform"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "description": "Kit de herramientas de UI de Google para construir aplicaciones compiladas nativas para móvil, web y escritorio.",
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
       "iconBg": "#02569B",
-      "cardBg": "linear-gradient(135deg, #02569B 0%, #014A87 100%)"
+      "cardBg": "linear-gradient(135deg, #02569B 0%, #014A87 100%)",
+      "category": "Cross-Platform"
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "description": "Lenguaje de programación poderoso e intuitivo para desarrollo de aplicaciones iOS, macOS, watchOS y tvOS.",
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
       "iconBg": "#FA7343",
-      "cardBg": "linear-gradient(135deg, #FA7343 0%, #E8633A 100%)"
+      "cardBg": "linear-gradient(135deg, #FA7343 0%, #E8633A 100%)",
+      "category": "Native iOS"
     },
     {
       "id": 4,
@@ -34,7 +37,8 @@
       "description": "Lenguaje de programación moderno que es 100% interoperable con Java y es el lenguaje preferido para Android.",
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
       "iconBg": "#7F52FF",
-      "cardBg": "linear-gradient(135deg, #7F52FF 0%, #6B42E5 100%)"
+      "cardBg": "linear-gradient(135deg, #7F52FF 0%, #6B42E5 100%)",
+      "category": "Native Android"
     },
     {
       "id": 5,
@@ -43,7 +47,8 @@
       "description": "Plataforma de desarrollo móvil de código abierto para construir aplicaciones Android e iOS con .NET y C#.",
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xamarin/xamarin-original.svg",
       "iconBg": "#3498DB",
-      "cardBg": "linear-gradient(135deg, #3498DB 0%, #2980B9 100%)"
+      "cardBg": "linear-gradient(135deg, #3498DB 0%, #2980B9 100%)",
+      "category": "Cross-Platform"
     },
     {
       "id": 6,
@@ -52,7 +57,8 @@
       "description": "Framework de desarrollo de aplicaciones móviles híbridas usando tecnologías web como HTML, CSS y JavaScript.",
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
       "iconBg": "#3880FF",
-      "cardBg": "linear-gradient(135deg, #3880FF 0%, #2F6CE5 100%)"
+      "cardBg": "linear-gradient(135deg, #3880FF 0%, #2F6CE5 100%)",
+      "category": "Hybrid"
     }
   ]
 }

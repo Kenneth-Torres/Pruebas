@@ -7,7 +7,8 @@
       "description": "Framework de testing de JavaScript que funciona out of the box para la mayoría de proyectos de JavaScript.",
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg",
       "iconBg": "#C21325",
-      "cardBg": "linear-gradient(135deg, #C21325 0%, #A01020 100%)"
+      "cardBg": "linear-gradient(135deg, #C21325 0%, #A01020 100%)",
+      "category": "Unit Testing"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "description": "Framework de testing end-to-end moderno que hace que configurar, escribir, ejecutar y debuggear tests sea fácil.",
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg",
       "iconBg": "#17202C",
-      "cardBg": "linear-gradient(135deg, #17202C 0%, #0D1117 100%)"
+      "cardBg": "linear-gradient(135deg, #17202C 0%, #0D1117 100%)",
+      "category": "E2E Testing"
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "description": "Suite de herramientas para automatizar navegadores web, principalmente usada para testing de aplicaciones web.",
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg",
       "iconBg": "#43B02A",
-      "cardBg": "linear-gradient(135deg, #43B02A 0%, #359A22 100%)"
+      "cardBg": "linear-gradient(135deg, #43B02A 0%, #359A22 100%)",
+      "category": "Automation"
     },
     {
       "id": 4,
@@ -34,7 +37,8 @@
       "description": "Familia de paquetes que te ayudan a testear componentes de UI de manera que se asemeje a como los usuarios los usan.",
       "iconSrc": "https://testing-library.com/img/octopus-64x64.png",
       "iconBg": "#E33332",
-      "cardBg": "linear-gradient(135deg, #E33332 0%, #C12827 100%)"
+      "cardBg": "linear-gradient(135deg, #E33332 0%, #C12827 100%)",
+      "category": "Unit Testing"
     },
     {
       "id": 5,
@@ -43,7 +47,8 @@
       "description": "Plataforma colaborativa para desarrollo de API que simplifica cada paso del ciclo de vida de las APIs.",
       "iconSrc": "https://www.svgrepo.com/show/354202/postman-icon.svg",
       "iconBg": "#FF6C37",
-      "cardBg": "linear-gradient(135deg, #FF6C37 0%, #E55A2B 100%)"
+      "cardBg": "linear-gradient(135deg, #FF6C37 0%, #E55A2B 100%)",
+      "category": "API Testing"
     },
     {
       "id": 6,
@@ -52,7 +57,8 @@
       "description": "Framework para testing de aplicaciones web que permite testing confiable end-to-end para aplicaciones web modernas.",
       "iconSrc": "https://playwright.dev/img/playwright-logo.svg",
       "iconBg": "#2EAD33",
-      "cardBg": "linear-gradient(135deg, #2EAD33 0%, #259A2A 100%)"
+      "cardBg": "linear-gradient(135deg, #2EAD33 0%, #259A2A 100%)",
+      "category": "E2E Testing"
     }
   ]
 }
