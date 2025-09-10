@@ -1,0 +1,23 @@
+---
+interface Props {
+  href?: string;
+  label: string;        // El texto del link (ej. "Ana Sayfa")
+  icon?: string;        // El ícono de feather (ej. "home")
+  badge?: string;       // Texto del badge opcional (ej. "Yeni")
+}
+
+const { href = "#", label = "inicio", icon = "home", badge } = Astro.props;
+---
+
+<a
+  href={href}
+  class="deep-ui-active flex items-center px-3 py-2.5 text-sm font-medium rounded-xl border border-transparent dark:border-[#3034ff]/20"
+>
+  <div
+    class="p-1.5 rounded-lg deep-ui-icon-bg mr-3 dark:bg-[#3034ff]/20 dark:text-[#a5a6ff]"
+  >
+    <i data-feather={icon} class="h-5 w-5"></i>
+  </div>
+  {label}
+  {badge && <span class="ml-auto badge badge-primary">{badge}</span>}
+</a>

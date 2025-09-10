@@ -1,0 +1,83 @@
+---
+import Layout from "../layouts/Layout.astro";
+import UnsplashCard from "../components/Card.astro";
+import Search from "../components/Search.astro";
+import ButtonFilter from "../components/ButtonFilter.astro";
+
+try {
+  const response = await fetch("./data/Resources.json");
+  if (!response.ok) throw new Error("No se pudo cargar el archivo");
+  const data = await response.json();
+  return data;
+} catch (error) {
+  console.error("Error cargando JSON:", error);
+  return null;
+}
+---
+
+<Layout
+  title="DevVault - Herramientas esenciales para construir, aprender y dominar el mundo del desarrollo."
+>
+  <div class="max-w-[1200px] mx-auto px-4 md:px-0">
+    <!-- Header -->
+    <header class="mb-10">
+      <div class="mt-7">
+        <Search />
+      </div>
+
+      <div class="flex flex-wrap gap-2 mt-4">
+        <ButtonFilter label="Animaciones" />
+        <ButtonFilter label="Iconos" />
+        <ButtonFilter label="Componentes" />
+        <ButtonFilter label="Aprender" />
+        <ButtonFilter label="Herramientas" />
+      </div>
+    </header>
+
+    <!-- Recursos -->
+    <section>
+      <h2 class="text-2xl md:text-3xl font-semibold text-white mb-6">
+        Recursos
+      </h2>
+
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
+      >
+        <UnsplashCard
+          title="Tailwind CSS"
+          subtitle="Framework CSS"
+          description="Framework CSS altamente personalizable y eficiente."
+          iconSrc="src/assets/tailwindcss.png"
+          iconBg="#FFFFFF"
+          cardBg=""
+        />
+        <UnsplashCard
+          title="Tailwind CSS"
+          subtitle="Framework CSS"
+          description="Framework CSS altamente personalizable y eficiente."
+          iconSrc="src/assets/tailwindcss.png"
+          iconBg="#FFFFFF"
+          cardBg=""
+        />
+        <UnsplashCard
+          title="Tailwind CSS"
+          subtitle="Framework CSS"
+          description="Framework CSS altamente personalizable y eficiente."
+          iconSrc="src/assets/tailwindcss.png"
+          iconBg="#FFFFFF"
+          cardBg=""
+        />
+        <UnsplashCard
+          title="Tailwind CSS"
+          subtitle="Framework CSS"
+          description="Framework CSS altamente personalizable y eficiente."
+          iconSrc="src/assets/tailwindcss.png"
+          iconBg="#FFFFFF"
+          cardBg=""
+        />
+
+        <!-- Puedes duplicar o mapear más cards aquí -->
+      </div>
+    </section>
+  </div>
+</Layout>

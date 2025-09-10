@@ -1,0 +1,118 @@
+---
+import "../Sidebar/style.css";
+import SidebarHeader from "./Header.astro";
+import SidebarItem from "./Item.astro";
+import Perfil from "./Perfil.astro";
+import Search from "../Search.astro";
+---
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<div
+  id="sidebar"
+  class="deep-ui-sidebar fixed top-0 left-0 h-screen z-30 w-72 flex flex-col overflow-y-auto bg-white dark:bg-slate-900 border-r border-[var(--border)]"
+>
+  <!-- Logo y Marca -->
+  <SidebarHeader />
+
+  <!-- Navegación -->
+  <div class="px-4 py-8 flex-1 overflow-y-auto">
+    <div class="mb-6">
+      <span
+        class="px-3 text-xs font-medium deep-ui-heading uppercase tracking-wider"
+      >
+        Menu
+      </span>
+
+      <div class="mt-3 space-y-1">
+        <SidebarItem href="/" label="Inicio" icon="home" />
+        <SidebarItem href="/frontend" label="FrontEnd" icon="bar-chart-2" />
+        <SidebarItem href="/backend" label="BackEnd" icon="folder" />
+        <SidebarItem href="/testing" label="Testing" icon="message-square" />
+        <SidebarItem href="/mobile" label="Mobil" icon="calendar" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Perfil -->
+  <Perfil/>
+</div>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    feather.replace();
+
+    // Tema değiştirme fonksiyonu
+    function toggleTheme() {
+      const html = document.documentElement;
+      if (html.classList.contains("dark")) {
+        html.classList.remove("dark");
+        html.classList.add("light");
+        localStorage.setItem("theme", "light");
+      } else {
+        html.classList.remove("light");
+        html.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      }
+    }
+
+    // Kullanıcının tema tercihini kontrol et
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      document.documentElement.classList.remove("light");
+      document.documentElement.classList.add("dark");
+    }
+
+    // Tema düğmeleri
+    const themeToggle = document.getElementById("theme-toggle");
+    const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
+
+    themeToggle.addEventListener("click", toggleTheme);
+    mobileThemeToggle.addEventListener("click", toggleTheme);
+
+    // Mobil menü için gerekli elementler
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const closeSidebarButton = document.getElementById("close-sidebar");
+    const sidebar = document.getElementById("sidebar");
+    const overlay = document.getElementById("overlay");
+
+    // Hamburger menü açma
+    mobileMenuButton.addEventListener("click", function () {
+      sidebar.classList.remove("-translate-x-full");
+      overlay.classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+    });
+
+    // Sidebar kapatma
+    function closeSidebar() {
+      sidebar.classList.add("-translate-x-full");
+      overlay.classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    closeSidebarButton.addEventListener("click", closeSidebar);
+    overlay.addEventListener("click", closeSidebar);
+
+    // Ekran boyutu değiştiğinde kontrol
+    window.addEventListener("resize", function () {
+      if (window.innerWidth >= 768) {
+        sidebar.classList.remove("-translate-x-full");
+        overlay.classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
+      } else {
+        sidebar.classList.add("-translate-x-full");
+      }
+    });
+  });
+</script>

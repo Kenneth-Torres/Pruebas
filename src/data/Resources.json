@@ -1,0 +1,76 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "Desarrollo Web",
+      "subtitle": "Frontend & Backend",
+      "description": "Creación de aplicaciones web modernas con React, Node.js y bases de datos. Implementación de APIs REST y autenticación segura.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      "iconBg": "#61DAFB",
+      "cardBg": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    },
+    {
+      "id": 2,
+      "title": "Diseño UI/UX",
+      "subtitle": "Experiencia de Usuario",
+      "description": "Diseño de interfaces intuitivas y atractivas. Prototipado en Figma, investigación de usuarios y testing de usabilidad.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+      "iconBg": "#F24E1E",
+      "cardBg": "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)"
+    },
+    {
+      "id": 3,
+      "title": "Base de Datos",
+      "subtitle": "Gestión de Datos",
+      "description": "Diseño y optimización de bases de datos relacionales y NoSQL. Consultas avanzadas y mejora del rendimiento.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      "iconBg": "#4479A1",
+      "cardBg": "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)"
+    },
+    {
+      "id": 4,
+      "title": "Marketing Digital",
+      "subtitle": "Estrategias Online",
+      "description": "Campañas en redes sociales, SEO, content marketing y análisis de métricas. Aumento significativo del tráfico web.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg",
+      "iconBg": "#4285F4",
+      "cardBg": "linear-gradient(135deg, #fa709a 0%, #fee140 100%)"
+    },
+    {
+      "id": 5,
+      "title": "Ciberseguridad",
+      "subtitle": "Protección Digital",
+      "description": "Implementación de medidas de seguridad, auditorías de vulnerabilidades, cifrado de datos y protocolos de seguridad.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+      "iconBg": "#FCC624",
+      "cardBg": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"
+    },
+    {
+      "id": 6,
+      "title": "Data Science",
+      "subtitle": "Análisis de Datos",
+      "description": "Análisis predictivo, machine learning, visualización de datos y desarrollo de dashboards interactivos con Python.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      "iconBg": "#3776AB",
+      "cardBg": "linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%)"
+    },
+    {
+      "id": 7,
+      "title": "Aplicaciones Móviles",
+      "subtitle": "iOS & Android",
+      "description": "Desarrollo de apps nativas y híbridas con React Native, Flutter. Integración con APIs y funcionalidades avanzadas.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      "iconBg": "#02569B",
+      "cardBg": "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)"
+    },
+    {
+      "id": 8,
+      "title": "DevOps & Cloud",
+      "subtitle": "Infraestructura",
+      "description": "Automatización de despliegues, contenedorización con Docker, CI/CD pipelines y gestión de infraestructura en la nube.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      "iconBg": "#2496ED",
+      "cardBg": "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)"
+    }
+  ]
+}
