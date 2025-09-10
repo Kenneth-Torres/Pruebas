@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import UnsplashCard from "../components/Card.astro";
 import Search from "../components/Search.astro";
 import ButtonFilter from "../components/ButtonFilter.astro";
 
@@ -14,11 +14,12 @@ interface Card {
   iconBg: string;
   cardBg: string;
 }
+
 // Cargar datos del archivo JSON
 let cards: Card[] = [];
 
 try {
-  const response = await import("../data/Resources.json");
+  const response = await import("../data/Mobile.json");
   const data = response.default || response;
   cards = data.cards || [];
 } catch (error) {
@@ -28,35 +29,41 @@ try {
 ---
 
 <Layout
-  title="DevVault - Herramientas esenciales para construir, aprender y dominar el mundo del desarrollo."
+  title="DevVault - Herramientas para desarrollo Mobile"
 >
   <div class="max-w-[1200px] mx-auto px-4 md:px-0">
     <!-- Header -->
     <header class="mb-10">
       <div class="mt-7">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          Mobile Development
+        </h1>
+        <p class="text-gray-400 mb-6">
+          Frameworks, herramientas y lenguajes para crear aplicaciones móviles nativas y multiplataforma.
+        </p>
         <Search />
       </div>
 
       <div class="flex flex-wrap gap-2 mt-4">
-        <ButtonFilter label="Animaciones" />
-        <ButtonFilter label="Iconos" />
-        <ButtonFilter label="Componentes" />
-        <ButtonFilter label="Aprender" />
-        <ButtonFilter label="Herramientas" />
+        <ButtonFilter label="Cross-Platform" />
+        <ButtonFilter label="iOS" />
+        <ButtonFilter label="Android" />
+        <ButtonFilter label="Native" />
+        <ButtonFilter label="Hybrid" />
       </div>
     </header>
 
     <!-- Recursos -->
     <section>
       <h2 class="text-2xl md:text-3xl font-semibold text-white mb-6">
-        Recursos
+        Recursos ({cards.length})
       </h2>
 
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
       >
         {cards.map((card) => (
-          <Card
+          <UnsplashCard
             title={card.title}
             subtitle={card.subtitle}
             description={card.description}

@@ -1,0 +1,64 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "React",
+      "subtitle": "Biblioteca JavaScript",
+      "description": "Una biblioteca de JavaScript para construir interfaces de usuario interactivas y componentes reutilizables.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      "iconBg": "#61DAFB",
+      "cardBg": "linear-gradient(135deg, #61DAFB 0%, #21759B 100%)",
+      "category": "Framework"
+    },
+    {
+      "id": 2,
+      "title": "Vue.js",
+      "subtitle": "Framework Progressive",
+      "description": "Framework progresivo para construir interfaces de usuario con un enfoque incremental y flexible.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+      "iconBg": "#4FC08D",
+      "cardBg": "linear-gradient(135deg, #4FC08D 0%, #2C3E50 100%)",
+      "category": "Framework"
+    },
+    {
+      "id": 3,
+      "title": "Angular",
+      "subtitle": "Framework TypeScript",
+      "description": "Plataforma de desarrollo para construir aplicaciones web móviles y de escritorio usando TypeScript.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+      "iconBg": "#DD0031",
+      "cardBg": "linear-gradient(135deg, #DD0031 0%, #C3002F 100%)",
+      "category": "Framework"
+    },
+    {
+      "id": 4,
+      "title": "Tailwind CSS",
+      "subtitle": "Framework CSS Utility",
+      "description": "Framework CSS utility-first que permite crear diseños personalizados directamente en el markup.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
+      "iconBg": "#06B6D4",
+      "cardBg": "linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)",
+      "category": "CSS"
+    },
+    {
+      "id": 5,
+      "title": "Sass",
+      "subtitle": "CSS con Superpoderes",
+      "description": "Preprocesador CSS que añade características como variables, anidamiento y mixins al CSS tradicional.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg",
+      "iconBg": "#CC6699",
+      "cardBg": "linear-gradient(135deg, #CC6699 0%, #AA4477 100%)",
+      "category": "CSS"
+    },
+    {
+      "id": 6,
+      "title": "TypeScript",
+      "subtitle": "JavaScript Tipado",
+      "description": "Superconjunto tipado de JavaScript que se compila a JavaScript plano para mejor desarrollo.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+      "iconBg": "#3178C6",
+      "cardBg": "linear-gradient(135deg, #3178C6 0%, #235A97 100%)",
+      "category": "Lenguaje"
+    }
+  ]
+}

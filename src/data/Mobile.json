@@ -1,0 +1,58 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "React Native",
+      "subtitle": "Cross-Platform Framework",
+      "description": "Framework para construir aplicaciones móviles nativas usando React y JavaScript para iOS y Android.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      "iconBg": "#61DAFB",
+      "cardBg": "linear-gradient(135deg, #61DAFB 0%, #21759B 100%)"
+    },
+    {
+      "id": 2,
+      "title": "Flutter",
+      "subtitle": "UI Framework by Google",
+      "description": "Kit de herramientas de UI de Google para construir aplicaciones compiladas nativas para móvil, web y escritorio.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+      "iconBg": "#02569B",
+      "cardBg": "linear-gradient(135deg, #02569B 0%, #014A87 100%)"
+    },
+    {
+      "id": 3,
+      "title": "Swift",
+      "subtitle": "iOS Development",
+      "description": "Lenguaje de programación poderoso e intuitivo para desarrollo de aplicaciones iOS, macOS, watchOS y tvOS.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
+      "iconBg": "#FA7343",
+      "cardBg": "linear-gradient(135deg, #FA7343 0%, #E8633A 100%)"
+    },
+    {
+      "id": 4,
+      "title": "Kotlin",
+      "subtitle": "Android Development",
+      "description": "Lenguaje de programación moderno que es 100% interoperable con Java y es el lenguaje preferido para Android.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+      "iconBg": "#7F52FF",
+      "cardBg": "linear-gradient(135deg, #7F52FF 0%, #6B42E5 100%)"
+    },
+    {
+      "id": 5,
+      "title": "Xamarin",
+      "subtitle": "Microsoft Cross-Platform",
+      "description": "Plataforma de desarrollo móvil de código abierto para construir aplicaciones Android e iOS con .NET y C#.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xamarin/xamarin-original.svg",
+      "iconBg": "#3498DB",
+      "cardBg": "linear-gradient(135deg, #3498DB 0%, #2980B9 100%)"
+    },
+    {
+      "id": 6,
+      "title": "Ionic",
+      "subtitle": "Hybrid App Framework",
+      "description": "Framework de desarrollo de aplicaciones móviles híbridas usando tecnologías web como HTML, CSS y JavaScript.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
+      "iconBg": "#3880FF",
+      "cardBg": "linear-gradient(135deg, #3880FF 0%, #2F6CE5 100%)"
+    }
+  ]
+}

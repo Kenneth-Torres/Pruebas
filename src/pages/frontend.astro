@@ -1,0 +1,208 @@
+---
+import Layout from "../layouts/Layout.astro";
+import UnsplashCard from "../components/Card.astro";
+import Search from "../components/Search.astro";
+import ButtonFilter from "../components/ButtonFilter.astro";
+
+// Definir el tipo de las cards
+interface Card {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  iconSrc: string;
+  iconBg: string;
+  cardBg: string;
+  category: string;
+}
+
+// Cargar datos del archivo JSON
+let cards: Card[] = [];
+
+try {
+  const response = await import("../data/Frontend.json");
+  const data = response.default || response;
+  cards = data.cards || [];
+} catch (error) {
+  console.error("Error cargando JSON:", error);
+  cards = [];
+}
+
+// Obtener categorías únicas
+const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.category)))];
+---
+
+<Layout
+  title="DevVault - Recursos y herramientas para desarrollo Frontend"
+>
+  <div class="max-w-[1400px] mx-auto px-4 md:px-0">
+    <!-- Header -->
+    <header class="mb-10">
+      <div class="mt-7">
+        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
+          FrontEnd Resources
+        </h1>
+        <p class="text-gray-400 mb-6">
+          Herramientas, frameworks y bibliotecas esenciales para el desarrollo frontend moderno.
+        </p>
+        <Search />
+      </div>
+
+      <div class="flex flex-wrap gap-2 mt-6">
+        {categories.map(category => (
+          <ButtonFilter label={category} />
+        ))}
+      </div>
+    </header>
+
+    <!-- Contador de recursos -->
+    <section class="mb-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl md:text-3xl font-semibold text-white">
+          Recursos (<span id="resource-count">{cards.length}</span>)
+        </h2>
+        <button 
+          id="clear-filters"
+          class="text-sm text-gray-400 hover:text-white transition-colors duration-200 hidden"
+        >
+          Limpiar filtros
+        </button>
+      </div>
+    </section>
+
+    <!-- Recursos Grid -->
+    <section>
+      <div
+        id="cards-container"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      >
+        {cards.map((card) => (
+          <div class="card-item" data-category={card.category} data-title={card.title.toLowerCase()} data-description={card.description.toLowerCase()}>
+            <UnsplashCard
+              title={card.title}
+              subtitle={card.subtitle}
+              description={card.description}
+              iconSrc={card.iconSrc}
+              iconBg={card.iconBg}
+              cardBg={card.cardBg}
+              category={card.category}
+            />
+          </div>
+        ))}
+      </div>
+
+      <!-- Mensaje cuando no hay resultados -->
+      <div id="no-results" class="hidden text-center py-16">
+        <div class="mb-6">
+          <i data-feather="search" class="w-16 h-16 mx-auto text-gray-600"></i>
+        </div>
+        <h3 class="text-xl font-medium text-gray-300 mb-2">No se encontraron recursos</h3>
+        <p class="text-gray-500">Intenta cambiar los filtros o el término de búsqueda</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      const searchInput = document.querySelector('input[type="text"]') as HTMLInputElement;
+      const cardItems = document.querySelectorAll('.card-item');
+      const resourceCount = document.getElementById('resource-count');
+      const noResults = document.getElementById('no-results');
+      const clearFiltersBtn = document.getElementById('clear-filters');
+      
+      let currentFilter = 'Todos';
+      let currentSearchTerm = '';
+
+      // Función para filtrar cards
+      function filterCards() {
+        let visibleCount = 0;
+
+        cardItems.forEach((card) => {
+          const cardElement = card as HTMLElement;
+          const category = cardElement.dataset.category || '';
+          const title = cardElement.dataset.title || '';
+          const description = cardElement.dataset.description || '';
+          
+          const matchesFilter = currentFilter === 'Todos' || category === currentFilter;
+          const matchesSearch = currentSearchTerm === '' || 
+                              title.includes(currentSearchTerm.toLowerCase()) ||
+                              description.includes(currentSearchTerm.toLowerCase());
+
+          if (matchesFilter && matchesSearch) {
+            cardElement.style.display = 'block';
+            visibleCount++;
+          } else {
+            cardElement.style.display = 'none';
+          }
+        });
+
+        // Actualizar contador
+        if (resourceCount) {
+          resourceCount.textContent = visibleCount.toString();
+        }
+
+        // Mostrar/ocultar mensaje de "no resultados"
+        if (noResults) {
+          noResults.classList.toggle('hidden', visibleCount > 0);
+        }
+
+        // Mostrar/ocultar botón de limpiar filtros
+        if (clearFiltersBtn) {
+          clearFiltersBtn.classList.toggle('hidden', currentFilter === 'Todos' && currentSearchTerm === '');
+        }
+      }
+
+      // Manejar clics en filtros
+      filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          // Remover clase activa de todos los botones
+          filterButtons.forEach(btn => {
+            btn.className = btn.className.replace(/text-white bg-gradient-to-br from-purple-600 to-blue-500 shadow-lg shadow-purple-500\/25/, 'text-gray-300 bg-slate-800/50 hover:bg-gradient-to-br hover:from-purple-600/20 hover:to-blue-500/20 hover:text-white border border-slate-700/50 hover:border-purple-500/30');
+          });
+
+          // Agregar clase activa al botón clickeado
+          button.className = button.className.replace(/text-gray-300 bg-slate-800\/50 hover:bg-gradient-to-br hover:from-purple-600\/20 hover:to-blue-500\/20 hover:text-white border border-slate-700\/50 hover:border-purple-500\/30/, 'text-white bg-gradient-to-br from-purple-600 to-blue-500 shadow-lg shadow-purple-500/25');
+          
+          // currentFilter = button.dataset.filter || 'Todos';
+          filterCards();
+        });
+      });
+
+      // Manejar búsqueda
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const target = e.target as HTMLInputElement;
+          currentSearchTerm = target.value;
+          filterCards();
+        });
+      }
+
+      // Manejar limpiar filtros
+      if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', () => {
+          currentFilter = 'Todos';
+          currentSearchTerm = '';
+          
+          if (searchInput) {
+            searchInput.value = '';
+          }
+
+          // Resetear botones de filtro
+          filterButtons.forEach((btn, index) => {
+            if (index === 0) { // Primer botón (Todos)
+              btn.className = btn.className.replace(/text-gray-300 bg-slate-800\/50 hover:bg-gradient-to-br hover:from-purple-600\/20 hover:to-blue-500\/20 hover:text-white border border-slate-700\/50 hover:border-purple-500\/30/, 'text-white bg-gradient-to-br from-purple-600 to-blue-500 shadow-lg shadow-purple-500/25');
+            } else {
+              btn.className = btn.className.replace(/text-white bg-gradient-to-br from-purple-600 to-blue-500 shadow-lg shadow-purple-500\/25/, 'text-gray-300 bg-slate-800/50 hover:bg-gradient-to-br hover:from-purple-600/20 hover:to-blue-500/20 hover:text-white border border-slate-700/50 hover:border-purple-500/30');
+            }
+          });
+
+          filterCards();
+        });
+      }
+
+      // Inicializar
+      filterCards();
+    });
+  </script>
+</Layout>

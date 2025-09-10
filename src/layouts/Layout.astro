@@ -24,12 +24,47 @@ const {
     <title>{title}</title>
   </head>
   <body>
-    <div>
+    <div class="flex">
       <Sidebar />
       
-      <main >
-        <slot />
+      <!-- Overlay para móvil -->
+      <div 
+        id="overlay" 
+        class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden overlay-blur"
+      ></div>
+      
+      <!-- Contenido principal con margen para el sidebar -->
+      <main class="flex-1 ml-0 md:ml-72 min-h-screen bg-[var(--bg)] transition-all duration-300">
+        <div class="p-6">
+          <slot />
+        </div>
       </main>
+      
+      <!-- Botón de menú móvil -->
+      <button
+        id="mobile-menu-button"
+        class="fixed top-4 left-4 z-40 md:hidden p-2 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--text)]"
+        aria-label="Abrir menú"
+      >
+        <i data-feather="menu" class="w-5 h-5"></i>
+      </button>
+      
+      <!-- Botón para cerrar sidebar en móvil -->
+      <button
+        id="close-sidebar"
+        class="fixed top-4 right-4 z-40 md:hidden p-2 rounded-lg bg-[var(--card)] border border-[var(--border)] text-[var(--text)]"
+        style="display: none;"
+      >
+        <i data-feather="x" class="w-5 h-5"></i>
+      </button>
     </div>
+
+    <!-- <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof feather !== 'undefined') {
+          feather.replace();
+        }
+      });
+    </script> -->
   </body>
 </html>

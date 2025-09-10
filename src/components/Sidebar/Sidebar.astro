@@ -4,6 +4,16 @@ import SidebarHeader from "./Header.astro";
 import SidebarItem from "./Item.astro";
 import Perfil from "./Perfil.astro";
 import Search from "../Search.astro";
+
+// Obtener la URL actual para determinar la página activa
+const currentPath = Astro.url.pathname;
+
+// Función para determinar si un item está activo
+function isActive(path: string): boolean {
+  if (path === "/" && currentPath === "/") return true;
+  if (path !== "/" && currentPath.includes(path)) return true;
+  return false;
+}
 ---
 
 <head>
@@ -32,11 +42,36 @@ import Search from "../Search.astro";
       </span>
 
       <div class="mt-3 space-y-1">
-        <SidebarItem href="/" label="Inicio" icon="home" />
-        <SidebarItem href="/frontend" label="FrontEnd" icon="bar-chart-2" />
-        <SidebarItem href="/backend" label="BackEnd" icon="folder" />
-        <SidebarItem href="/testing" label="Testing" icon="message-square" />
-        <SidebarItem href="/mobile" label="Mobil" icon="calendar" />
+        <SidebarItem 
+          href="/" 
+          label="Inicio" 
+          icon="home" 
+          isActive={isActive("/")}
+        />
+        <SidebarItem 
+          href="/frontend" 
+          label="FrontEnd" 
+          icon="bar-chart-2" 
+          isActive={isActive("/frontend")}
+        />
+        <SidebarItem 
+          href="/backend" 
+          label="BackEnd" 
+          icon="folder" 
+          isActive={isActive("/backend")}
+        />
+        <SidebarItem 
+          href="/testing" 
+          label="Testing" 
+          icon="message-square" 
+          isActive={isActive("/testing")}
+        />
+        <SidebarItem 
+          href="/mobile" 
+          label="Mobile" 
+          icon="calendar" 
+          isActive={isActive("/mobile")}
+        />
       </div>
     </div>
   </div>
@@ -47,39 +82,10 @@ import Search from "../Search.astro";
 
 <script is:inline>
   document.addEventListener("DOMContentLoaded", function () {
-    feather.replace();
-
-    // Tema değiştirme fonksiyonu
-    function toggleTheme() {
-      const html = document.documentElement;
-      if (html.classList.contains("dark")) {
-        html.classList.remove("dark");
-        html.classList.add("light");
-        localStorage.setItem("theme", "light");
-      } else {
-        html.classList.remove("light");
-        html.classList.add("dark");
-        localStorage.setItem("theme", "dark");
-      }
+    // Verificar que feather esté disponible antes de usarlo
+    if (typeof feather !== 'undefined') {
+      feather.replace();
     }
-
-    // Kullanıcının tema tercihini kontrol et
-    const savedTheme = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
-
-    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
-      document.documentElement.classList.remove("light");
-      document.documentElement.classList.add("dark");
-    }
-
-    // Tema düğmeleri
-    const themeToggle = document.getElementById("theme-toggle");
-    const mobileThemeToggle = document.getElementById("mobile-theme-toggle");
-
-    themeToggle.addEventListener("click", toggleTheme);
-    mobileThemeToggle.addEventListener("click", toggleTheme);
 
     // Mobil menü için gerekli elementler
     const mobileMenuButton = document.getElementById("mobile-menu-button");
@@ -88,27 +94,33 @@ import Search from "../Search.astro";
     const overlay = document.getElementById("overlay");
 
     // Hamburger menü açma
-    mobileMenuButton.addEventListener("click", function () {
-      sidebar.classList.remove("-translate-x-full");
-      overlay.classList.remove("hidden");
-      document.body.classList.add("overflow-hidden");
-    });
+    if (mobileMenuButton) {
+      mobileMenuButton.addEventListener("click", function () {
+        sidebar.classList.remove("-translate-x-full");
+        if (overlay) overlay.classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
+      });
+    }
 
     // Sidebar kapatma
     function closeSidebar() {
       sidebar.classList.add("-translate-x-full");
-      overlay.classList.add("hidden");
+      if (overlay) overlay.classList.add("hidden");
       document.body.classList.remove("overflow-hidden");
     }
 
-    closeSidebarButton.addEventListener("click", closeSidebar);
-    overlay.addEventListener("click", closeSidebar);
+    if (closeSidebarButton) {
+      closeSidebarButton.addEventListener("click", closeSidebar);
+    }
+    if (overlay) {
+      overlay.addEventListener("click", closeSidebar);
+    }
 
     // Ekran boyutu değiştiğinde kontrol
     window.addEventListener("resize", function () {
       if (window.innerWidth >= 768) {
         sidebar.classList.remove("-translate-x-full");
-        overlay.classList.add("hidden");
+        if (overlay) overlay.classList.add("hidden");
         document.body.classList.remove("overflow-hidden");
       } else {
         sidebar.classList.add("-translate-x-full");

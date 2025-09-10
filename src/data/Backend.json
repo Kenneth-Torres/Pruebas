@@ -1,0 +1,58 @@
+{
+  "cards": [
+    {
+      "id": 1,
+      "title": "Node.js",
+      "subtitle": "Runtime JavaScript",
+      "description": "Entorno de ejecución de JavaScript basado en el motor V8 de Chrome para construir aplicaciones del lado del servidor.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      "iconBg": "#339933",
+      "cardBg": "linear-gradient(135deg, #339933 0%, #2D7A2D 100%)"
+    },
+    {
+      "id": 2,
+      "title": "Express.js",
+      "subtitle": "Framework Web Node.js",
+      "description": "Framework web minimalista y flexible para Node.js que proporciona características robustas para aplicaciones web.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      "iconBg": "#000000",
+      "cardBg": "linear-gradient(135deg, #404040 0%, #1a1a1a 100%)"
+    },
+    {
+      "id": 3,
+      "title": "Python Django",
+      "subtitle": "Framework Web Python",
+      "description": "Framework web de alto nivel que fomenta el desarrollo rápido y el diseño limpio y pragmático.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+      "iconBg": "#092E20",
+      "cardBg": "linear-gradient(135deg, #092E20 0%, #0A4D2A 100%)"
+    },
+    {
+      "id": 4,
+      "title": "MongoDB",
+      "subtitle": "Base de Datos NoSQL",
+      "description": "Base de datos NoSQL orientada a documentos que almacena datos en documentos similares a JSON.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+      "iconBg": "#47A248",
+      "cardBg": "linear-gradient(135deg, #47A248 0%, #3D8B40 100%)"
+    },
+    {
+      "id": 5,
+      "title": "PostgreSQL",
+      "subtitle": "Base de Datos Relacional",
+      "description": "Sistema de gestión de bases de datos relacional y objeto con énfasis en la extensibilidad y cumplimiento de estándares.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+      "iconBg": "#336791",
+      "cardBg": "linear-gradient(135deg, #336791 0%, #2A5782 100%)"
+    },
+    {
+      "id": 6,
+      "title": "Docker",
+      "subtitle": "Containerización",
+      "description": "Plataforma de contenedores que permite empaquetar aplicaciones con todas sus dependencias en contenedores portátiles.",
+      "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+      "iconBg": "#2496ED",
+      "cardBg": "linear-gradient(135deg, #2496ED 0%, #1D7DD8 100%)"
+    }
+  ]
+}
