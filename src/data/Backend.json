@@ -8,7 +8,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
       "iconBg": "#339933",
       "cardBg": "linear-gradient(135deg, #339933 0%, #2D7A2D 100%)",
-      "category": "Runtime"
+      "category": "Runtime",
+      "url": "https://nodejs.org"
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
       "iconBg": "#000000",
       "cardBg": "linear-gradient(135deg, #404040 0%, #1a1a1a 100%)",
-      "category": "Framework"
+      "category": "Framework",
+      "url": "https://expressjs.com"
     },
     {
       "id": 3,
@@ -28,7 +30,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
       "iconBg": "#092E20",
       "cardBg": "linear-gradient(135deg, #092E20 0%, #0A4D2A 100%)",
-      "category": "Framework"
+      "category": "Framework",
+      "url": "https://www.djangoproject.com"
     },
     {
       "id": 4,
@@ -38,7 +41,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
       "iconBg": "#47A248",
       "cardBg": "linear-gradient(135deg, #47A248 0%, #3D8B40 100%)",
-      "category": "Database"
+      "category": "Database",
+      "url": "https://www.mongodb.com"
     },
     {
       "id": 5,
@@ -48,7 +52,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
       "iconBg": "#336791",
       "cardBg": "linear-gradient(135deg, #336791 0%, #2A5782 100%)",
-      "category": "Database"
+      "category": "Database",
+      "url": "https://www.postgresql.org"
     },
     {
       "id": 6,
@@ -58,7 +63,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
       "iconBg": "#2496ED",
       "cardBg": "linear-gradient(135deg, #2496ED 0%, #1D7DD8 100%)",
-      "category": "DevOps"
+      "category": "DevOps",
+      "url": "https://www.docker.com"
     }
   ]
 }

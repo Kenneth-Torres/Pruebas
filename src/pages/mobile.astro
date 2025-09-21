@@ -14,6 +14,7 @@ interface Card {
   iconBg: string;
   cardBg: string;
   category: string;
+  url: string;
 }
 
 // Cargar datos del archivo JSON
@@ -40,7 +41,7 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
     <header class="mb-10">
       <div class="mt-7">
         <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          Mobile Development
+          📱 Mobile Development
         </h1>
         <p class="text-gray-400 mb-6">
           Frameworks, herramientas y lenguajes para crear aplicaciones móviles nativas y multiplataforma.
@@ -86,6 +87,7 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
               iconBg={card.iconBg}
               cardBg={card.cardBg}
               category={card.category}
+              url={card.url}
             />
           </div>
         ))}
@@ -98,6 +100,55 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
         </div>
         <h3 class="text-xl font-medium text-gray-300 mb-2">No se encontraron recursos</h3>
         <p class="text-gray-500">Intenta cambiar los filtros o el término de búsqueda</p>
+      </div>
+    </section>
+
+    <!-- Guía de desarrollo móvil -->
+    <section class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-purple-900/20 to-pink-900/20 border border-white/10">
+      <h3 class="text-2xl font-bold text-white mb-4">🚀 ¿Qué enfoque elegir?</h3>
+      <div class="grid md:grid-cols-3 gap-6 text-gray-300 mb-6">
+        <div class="p-4 rounded-lg bg-blue-900/20 border border-blue-800/30">
+          <h4 class="text-lg font-semibold text-blue-300 mb-2">Cross-Platform</h4>
+          <p class="text-sm mb-3">Un código para iOS y Android</p>
+          <div class="space-y-1 text-xs">
+            <div>• React Native</div>
+            <div>• Flutter</div>
+            <div>• Xamarin</div>
+          </div>
+        </div>
+        <div class="p-4 rounded-lg bg-green-900/20 border border-green-800/30">
+          <h4 class="text-lg font-semibold text-green-300 mb-2">Native iOS</h4>
+          <p class="text-sm mb-3">Máximo rendimiento en iOS</p>
+          <div class="space-y-1 text-xs">
+            <div>• Swift</div>
+            <div>• Objective-C</div>
+            <div>• SwiftUI</div>
+          </div>
+        </div>
+        <div class="p-4 rounded-lg bg-purple-900/20 border border-purple-800/30">
+          <h4 class="text-lg font-semibold text-purple-300 mb-2">Native Android</h4>
+          <p class="text-sm mb-3">Optimizado para Android</p>
+          <div class="space-y-1 text-xs">
+            <div>• Kotlin</div>
+            <div>• Java</div>
+            <div>• Jetpack Compose</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-white/10 pt-6">
+        <h4 class="text-lg font-semibold text-white mb-3">Recursos relacionados</h4>
+        <div class="flex flex-wrap gap-3">
+          <a href="/backend" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
+            APIs para Mobile
+          </a>
+          <a href="/testing" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors">
+            Testing Mobile
+          </a>
+          <a href="/frontend" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+            Web Mobile
+          </a>
+        </div>
       </div>
     </section>
   </div>
@@ -164,7 +215,9 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
           // Agregar clase activa al botón clickeado
           button.className = button.className.replace(/text-gray-300 bg-slate-800\/50 hover:bg-gradient-to-br hover:from-purple-600\/20 hover:to-blue-500\/20 hover:text-white border border-slate-700\/50 hover:border-purple-500\/30/, 'text-white bg-gradient-to-br from-purple-600 to-blue-500 shadow-lg shadow-purple-500/25');
           
-          // currentFilter = button.dataset.filter || 'Todos';
+          // Actualizar filtro actual
+          const buttonElement = button as HTMLElement;
+          currentFilter = buttonElement.dataset.filter || 'Todos';
           filterCards();
         });
       });

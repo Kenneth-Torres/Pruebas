@@ -8,7 +8,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
       "iconBg": "#61DAFB",
       "cardBg": "linear-gradient(135deg, #61DAFB 0%, #21759B 100%)",
-      "category": "Framework"
+      "category": "Framework",
+      "url": "https://reactjs.org"
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
       "iconBg": "#4FC08D",
       "cardBg": "linear-gradient(135deg, #4FC08D 0%, #2C3E50 100%)",
-      "category": "Framework"
+      "category": "Framework",
+      "url": "https://vuejs.org"
     },
     {
       "id": 3,
@@ -28,7 +30,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
       "iconBg": "#DD0031",
       "cardBg": "linear-gradient(135deg, #DD0031 0%, #C3002F 100%)",
-      "category": "Framework"
+      "category": "Framework",
+      "url": "https://angular.io"
     },
     {
       "id": 4,
@@ -38,7 +41,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg",
       "iconBg": "#06B6D4",
       "cardBg": "linear-gradient(135deg, #06B6D4 0%, #0891B2 100%)",
-      "category": "CSS"
+      "category": "CSS",
+      "url": "https://tailwindcss.com"
     },
     {
       "id": 5,
@@ -48,7 +52,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg",
       "iconBg": "#CC6699",
       "cardBg": "linear-gradient(135deg, #CC6699 0%, #AA4477 100%)",
-      "category": "CSS"
+      "category": "CSS",
+      "url": "https://sass-lang.com"
     },
     {
       "id": 6,
@@ -58,7 +63,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
       "iconBg": "#3178C6",
       "cardBg": "linear-gradient(135deg, #3178C6 0%, #235A97 100%)",
-      "category": "Lenguaje"
+      "category": "Lenguaje",
+      "url": "https://www.typescriptlang.org"
     }
   ]
 }

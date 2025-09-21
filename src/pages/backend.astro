@@ -14,6 +14,7 @@ interface Card {
   iconBg: string;
   cardBg: string;
   category: string;
+  url: string;
 }
 
 // Cargar datos del archivo JSON
@@ -33,14 +34,14 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
 ---
 
 <Layout
-  title="DevVault - Recursos y herramientas para desarrollo Frontend"
+  title="DevVault - Recursos y herramientas para desarrollo Backend"
 >
   <div class="max-w-[1400px] mx-auto px-4 md:px-0">
     <!-- Header -->
     <header class="mb-10">
       <div class="mt-7">
         <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          BackEnd Resources
+          🔧 BackEnd Resources
         </h1>
         <p class="text-gray-400 mb-6">
           Tecnologías del servidor, bases de datos y herramientas para construir APIs robustas y escalables.
@@ -86,6 +87,7 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
               iconBg={card.iconBg}
               cardBg={card.cardBg}
               category={card.category}
+              url={card.url}
             />
           </div>
         ))}
@@ -98,6 +100,25 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
         </div>
         <h3 class="text-xl font-medium text-gray-300 mb-2">No se encontraron recursos</h3>
         <p class="text-gray-500">Intenta cambiar los filtros o el término de búsqueda</p>
+      </div>
+    </section>
+
+    <!-- Sección de recursos relacionados -->
+    <section class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-green-900/20 to-blue-900/20 border border-white/10">
+      <h3 class="text-2xl font-bold text-white mb-4">🛠️ Próximos pasos</h3>
+      <p class="text-gray-300 mb-6">
+        Una vez que domines estas tecnologías backend, explora estas áreas complementarias.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="/frontend" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+          Conectar con Frontend
+        </a>
+        <a href="/testing" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors">
+          Testing de APIs
+        </a>
+        <a href="/mobile" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
+          APIs para Mobile
+        </a>
       </div>
     </section>
   </div>
@@ -164,7 +185,9 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
           // Agregar clase activa al botón clickeado
           button.className = button.className.replace(/text-gray-300 bg-slate-800\/50 hover:bg-gradient-to-br hover:from-purple-600\/20 hover:to-blue-500\/20 hover:text-white border border-slate-700\/50 hover:border-purple-500\/30/, 'text-white bg-gradient-to-br from-purple-600 to-blue-500 shadow-lg shadow-purple-500/25');
           
-          // currentFilter = button.dataset.filter || 'Todos';
+          // Actualizar filtro actual
+          const buttonElement = button as HTMLElement;
+          currentFilter = buttonElement.dataset.filter || 'Todos';
           filterCards();
         });
       });

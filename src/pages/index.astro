@@ -14,6 +14,7 @@ interface Card {
   iconBg: string;
   cardBg: string;
 }
+
 // Cargar datos del archivo JSON
 let cards: Card[] = [];
 
@@ -25,47 +26,410 @@ try {
   console.error("Error cargando JSON:", error);
   cards = [];
 }
+
+// Estadísticas dinámicas
+const stats = [
+  { number: "1000+", label: "Recursos", icon: "database" },
+  { number: "50+", label: "Tecnologías", icon: "code" },
+  { number: "10+", label: "Categorías", icon: "layers" },
+  { number: "24/7", label: "Disponible", icon: "clock" }
+];
+
+// Categorías principales
+const mainCategories = [
+  { 
+    name: "Frontend", 
+    description: "React, Vue, Angular y más",
+    icon: "monitor",
+    color: "from-blue-500 to-purple-600",
+    href: "/frontend"
+  },
+  { 
+    name: "Backend", 
+    description: "Node.js, Python, bases de datos",
+    icon: "server",
+    color: "from-green-500 to-teal-600",
+    href: "/backend"
+  },
+  { 
+    name: "Mobile", 
+    description: "React Native, Flutter, Swift",
+    icon: "smartphone",
+    color: "from-pink-500 to-rose-600",
+    href: "/mobile"
+  },
+  { 
+    name: "Testing", 
+    description: "Jest, Cypress, Playwright",
+    icon: "check-circle",
+    color: "from-orange-500 to-yellow-600",
+    href: "/testing"
+  }
+];
 ---
 
-<Layout
-  title="DevVault - Herramientas esenciales para construir, aprender y dominar el mundo del desarrollo."
->
-  <div class="max-w-[1200px] mx-auto px-4 md:px-0">
-    <!-- Header -->
-    <header class="mb-10">
-      <div class="mt-7">
-        <Search />
+<Layout title="DevVault - Tu arsenal completo de herramientas de desarrollo">
+  <div class="relative overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center px-4 md:px-0">
+      <!-- Animated Background -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute top-40 right-20 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+        
+        <!-- Animated particles -->
+        <div class="absolute inset-0">
+          <div class="particle particle-1"></div>
+          <div class="particle particle-2"></div>
+          <div class="particle particle-3"></div>
+          <div class="particle particle-4"></div>
+          <div class="particle particle-5"></div>
+        </div>
       </div>
 
-      <div class="flex flex-wrap gap-2 mt-4">
-        <ButtonFilter label="Animaciones" />
-        <ButtonFilter label="Iconos" />
-        <ButtonFilter label="Componentes" />
-        <ButtonFilter label="Aprender" />
-        <ButtonFilter label="Herramientas" />
+      <!-- Hero Content -->
+      <div class="relative z-10 text-center max-w-4xl mx-auto">
+        <div class="mb-6">
+          <span class="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 border border-purple-500/30 text-purple-300 text-sm font-medium backdrop-blur-sm">
+            <i data-feather="zap" class="w-4 h-4 mr-2"></i>
+            Tu arsenal de desarrollo definitivo
+          </span>
+        </div>
+        
+        <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+          <span class="bg-gradient-to-r from-white via-purple-300 to-blue-300 bg-clip-text text-transparent">
+            DevVault
+          </span>
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed max-w-3xl mx-auto">
+          Descubre, aprende y domina las herramientas más poderosas del desarrollo moderno. 
+          <span class="text-purple-400 font-semibold">Todo en un solo lugar.</span>
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <button class="group px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl font-semibold text-white hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+            <span class="flex items-center">
+              Explorar Recursos
+              <i data-feather="arrow-right" class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </span>
+          </button>
+          
+          <button class="px-8 py-4 border border-gray-600 rounded-xl font-semibold text-white hover:border-purple-500 hover:text-purple-300 transition-all duration-300 backdrop-blur-sm">
+            <span class="flex items-center">
+              <i data-feather="play" class="w-5 h-5 mr-2"></i>
+              Ver Demo
+            </span>
+          </button>
+        </div>
+
+        <!-- Search Section -->
+        <div class="max-w-2xl mx-auto">
+          <Search />
+          <div class="flex flex-wrap gap-2 mt-4 justify-center">
+            <ButtonFilter label="Animaciones" />
+            <ButtonFilter label="Iconos" />
+            <ButtonFilter label="Componentes" />
+            <ButtonFilter label="Aprender" />
+            <ButtonFilter label="Herramientas" />
+          </div>
+        </div>
       </div>
-    </header>
 
-    <!-- Recursos -->
-    <section>
-      <h2 class="text-2xl md:text-3xl font-semibold text-white mb-6">
-        Recursos
-      </h2>
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div class="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+          <div class="w-1 h-3 bg-gray-400 rounded-full mt-2 animate-pulse"></div>
+        </div>
+      </div>
+    </section>
 
-      <div
-        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
-      >
-        {cards.map((card) => (
-          <Card
-            title={card.title}
-            subtitle={card.subtitle}
-            description={card.description}
-            iconSrc={card.iconSrc}
-            iconBg={card.iconBg}
-            cardBg={card.cardBg}
-          />
-        ))}
+    <!-- Stats Section -->
+    <section class="py-20 px-4 md:px-0">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((stat, index) => (
+            <div class="text-center group">
+              <div class="mb-4 flex justify-center">
+                <div class="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-xl flex items-center justify-center border border-purple-500/30 group-hover:scale-110 transition-transform duration-300">
+                  <i data-feather={stat.icon} class="w-8 h-8 text-purple-400"></i>
+                </div>
+              </div>
+              <div class="text-3xl md:text-4xl font-bold text-white mb-2 counter" data-count={stat.number}>0</div>
+              <div class="text-gray-400 font-medium">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-20 px-4 md:px-0">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            Explora por <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Categorías</span>
+          </h2>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Encuentra exactamente lo que necesitas, organizado por tecnologías y casos de uso.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {mainCategories.map((category, index) => (
+            <a href={category.href} class="group block">
+              <div class="relative p-8 bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-2xl border border-slate-700/50 hover:border-purple-500/50 transition-all duration-500 overflow-hidden group-hover:transform group-hover:-translate-y-2">
+                <!-- Background Gradient -->
+                <div class={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
+                
+                <!-- Icon -->
+                <div class="relative z-10 mb-6">
+                  <div class={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <i data-feather={category.icon} class="w-8 h-8 text-white"></i>
+                  </div>
+                </div>
+
+                <!-- Content -->
+                <div class="relative z-10">
+                  <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">
+                    {category.name}
+                  </h3>
+                  <p class="text-gray-400 group-hover:text-gray-300 transition-colors">
+                    {category.description}
+                  </p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <i data-feather="arrow-up-right" class="w-6 h-6 text-purple-400"></i>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Resources -->
+    <section class="py-20 px-4 md:px-0">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            Recursos <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Destacados</span>
+          </h2>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Una selección cuidadosa de las herramientas más utilizadas por los desarrolladores.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-44">
+          {cards.slice(0, 8).map((card) => (
+            <div class="transform hover:scale-105 transition-transform duration-300">
+              <Card
+                title={card.title}
+                subtitle={card.subtitle}
+                description={card.description}
+                iconSrc={card.iconSrc}
+                iconBg={card.iconBg}
+                cardBg={card.cardBg}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="#" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-xl font-semibold text-white hover:from-purple-600/30 hover:to-blue-600/30 transition-all duration-300 backdrop-blur-sm">
+            Ver todos los recursos
+            <i data-feather="arrow-right" class="w-5 h-5 ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 px-4 md:px-0">
+      <div class="max-w-4xl mx-auto">
+        <div class="relative p-12 bg-gradient-to-br from-purple-900/20 to-blue-900/20 rounded-3xl border border-purple-500/30 backdrop-blur-sm overflow-hidden">
+          <!-- Background decoration -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-purple-500/10 to-blue-500/10 rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-pink-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+
+          <div class="relative z-10 text-center">
+            <div class="mb-6">
+              <div class="w-20 h-20 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-2xl shadow-purple-500/25">
+                <i data-feather="bell" class="w-10 h-10 text-white"></i>
+              </div>
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              Mantente al día con DevVault
+            </h2>
+            <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Recibe las últimas herramientas, tutoriales y recursos directamente en tu bandeja de entrada.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+              <input 
+                type="email" 
+                placeholder="tu@email.com" 
+                class="flex-1 px-6 py-4 bg-slate-800/50 border border-slate-700/50 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent backdrop-blur-sm"
+              />
+              <button class="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl font-semibold text-white hover:shadow-xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1">
+                Suscribirse
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
+
+  <style>
+    /* Particle animations */
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(139, 92, 246, 0.6);
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .particle-1 {
+      top: 20%;
+      left: 20%;
+      animation-delay: 0s;
+    }
+
+    .particle-2 {
+      top: 60%;
+      left: 80%;
+      animation-delay: 2s;
+      background: rgba(59, 130, 246, 0.6);
+    }
+
+    .particle-3 {
+      top: 80%;
+      left: 10%;
+      animation-delay: 4s;
+      background: rgba(236, 72, 153, 0.6);
+    }
+
+    .particle-4 {
+      top: 10%;
+      left: 90%;
+      animation-delay: 1s;
+      background: rgba(34, 197, 94, 0.6);
+    }
+
+    .particle-5 {
+      top: 50%;
+      left: 50%;
+      animation-delay: 3s;
+      background: rgba(249, 115, 22, 0.6);
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px) scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(-20px) scale(1.1);
+        opacity: 1;
+      }
+    }
+
+    /* Counter animation */
+    @keyframes countUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .counter {
+      animation: countUp 1s ease-out forwards;
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Feather icons
+      // if (typeof feather !== 'undefined') {
+      //   feather.replace();
+      // }
+
+      // Counter animation
+      const counters = document.querySelectorAll('.counter');
+      const observerOptions = {
+        threshold: 0.5
+      };
+
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target;
+            const target = counter.getAttribute('data-count');
+            let current = 0;
+            
+            // Extract number from string (e.g., "1000+" -> 1000)
+            const targetNumber = parseInt(target.replace(/\D/g, ''));
+            const suffix = target.replace(/\d/g, '');
+            
+            const increment = targetNumber / 50;
+            
+            const updateCounter = () => {
+              current += increment;
+              if (current < targetNumber) {
+                counter.textContent = Math.floor(current) + suffix;
+                requestAnimationFrame(updateCounter);
+              } else {
+                counter.textContent = target;
+              }
+            };
+            
+            updateCounter();
+            counterObserver.unobserve(counter);
+          }
+        });
+      }, observerOptions);
+
+      counters.forEach(counter => {
+        counterObserver.observe(counter);
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Add some interactive hover effects
+      const categoryCards = document.querySelectorAll('.group');
+      categoryCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-8px) rotateY(5deg)';
+          card.style.transition = 'all 0.3s ease';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0) rotateY(0)';
+        });
+      });
+    });
+  </script>
 </Layout>

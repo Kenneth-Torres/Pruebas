@@ -14,6 +14,7 @@ interface Card {
   iconBg: string;
   cardBg: string;
   category: string;
+  url: string;
 }
 
 // Cargar datos del archivo JSON
@@ -40,7 +41,7 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
     <header class="mb-10">
       <div class="mt-7">
         <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          Testing Resources
+          🧪 Testing Resources
         </h1>
         <p class="text-gray-400 mb-6">
           Frameworks, bibliotecas y herramientas para asegurar la calidad de tu código con testing automatizado.
@@ -86,6 +87,7 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
               iconBg={card.iconBg}
               cardBg={card.cardBg}
               category={card.category}
+              url={card.url}
             />
           </div>
         ))}
@@ -98,6 +100,42 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
         </div>
         <h3 class="text-xl font-medium text-gray-300 mb-2">No se encontraron recursos</h3>
         <p class="text-gray-500">Intenta cambiar los filtros o el término de búsqueda</p>
+      </div>
+    </section>
+
+    <!-- Sección informativa sobre Testing -->
+    <section class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-orange-900/20 to-red-900/20 border border-white/10">
+      <h3 class="text-2xl font-bold text-white mb-4">🎯 ¿Por qué es importante el testing?</h3>
+      <div class="grid md:grid-cols-2 gap-6 text-gray-300">
+        <div>
+          <h4 class="text-lg font-semibold text-white mb-2">Beneficios clave</h4>
+          <ul class="space-y-2 text-sm">
+            <li>• Detecta errores antes de producción</li>
+            <li>• Facilita refactoring seguro</li>
+            <li>• Mejora la calidad del código</li>
+            <li>• Documenta el comportamiento esperado</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-lg font-semibold text-white mb-2">Tipos de testing</h4>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-blue-600/20 text-blue-300 rounded-md text-xs">Unit Testing</span>
+            <span class="px-2 py-1 bg-green-600/20 text-green-300 rounded-md text-xs">E2E Testing</span>
+            <span class="px-2 py-1 bg-purple-600/20 text-purple-300 rounded-md text-xs">API Testing</span>
+            <span class="px-2 py-1 bg-orange-600/20 text-orange-300 rounded-md text-xs">Automation</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3 mt-6">
+        <a href="/frontend" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
+          Testing Frontend
+        </a>
+        <a href="/backend" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
+          Testing Backend
+        </a>
+        <a href="/mobile" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
+          Testing Mobile
+        </a>
       </div>
     </section>
   </div>
@@ -164,7 +202,9 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
           // Agregar clase activa al botón clickeado
           button.className = button.className.replace(/text-gray-300 bg-slate-800\/50 hover:bg-gradient-to-br hover:from-purple-600\/20 hover:to-blue-500\/20 hover:text-white border border-slate-700\/50 hover:border-purple-500\/30/, 'text-white bg-gradient-to-br from-purple-600 to-blue-500 shadow-lg shadow-purple-500/25');
           
-          // currentFilter = button.dataset.filter || 'Todos';
+          // Actualizar filtro actual
+          const buttonElement = button as HTMLElement;
+          currentFilter = buttonElement.dataset.filter || 'Todos';
           filterCards();
         });
       });

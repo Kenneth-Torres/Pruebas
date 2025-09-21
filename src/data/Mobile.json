@@ -8,7 +8,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
       "iconBg": "#61DAFB",
       "cardBg": "linear-gradient(135deg, #61DAFB 0%, #21759B 100%)",
-      "category": "Cross-Platform"
+      "category": "Cross-Platform",
+      "url": "https://reactnative.dev"
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
       "iconBg": "#02569B",
       "cardBg": "linear-gradient(135deg, #02569B 0%, #014A87 100%)",
-      "category": "Cross-Platform"
+      "category": "Cross-Platform",
+      "url": "https://flutter.dev"
     },
     {
       "id": 3,
@@ -28,7 +30,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
       "iconBg": "#FA7343",
       "cardBg": "linear-gradient(135deg, #FA7343 0%, #E8633A 100%)",
-      "category": "Native iOS"
+      "category": "Native iOS",
+      "url": "https://developer.apple.com/swift"
     },
     {
       "id": 4,
@@ -38,7 +41,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
       "iconBg": "#7F52FF",
       "cardBg": "linear-gradient(135deg, #7F52FF 0%, #6B42E5 100%)",
-      "category": "Native Android"
+      "category": "Native Android",
+      "url": "https://kotlinlang.org"
     },
     {
       "id": 5,
@@ -48,7 +52,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/xamarin/xamarin-original.svg",
       "iconBg": "#3498DB",
       "cardBg": "linear-gradient(135deg, #3498DB 0%, #2980B9 100%)",
-      "category": "Cross-Platform"
+      "category": "Cross-Platform",
+      "url": "https://dotnet.microsoft.com/apps/xamarin"
     },
     {
       "id": 6,
@@ -58,7 +63,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
       "iconBg": "#3880FF",
       "cardBg": "linear-gradient(135deg, #3880FF 0%, #2F6CE5 100%)",
-      "category": "Hybrid"
+      "category": "Hybrid",
+      "url": "https://ionicframework.com"
     }
   ]
 }

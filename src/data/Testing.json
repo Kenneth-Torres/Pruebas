@@ -8,7 +8,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg",
       "iconBg": "#C21325",
       "cardBg": "linear-gradient(135deg, #C21325 0%, #A01020 100%)",
-      "category": "Unit Testing"
+      "category": "Unit Testing",
+      "url": "https://jestjs.io"
     },
     {
       "id": 2,
@@ -18,7 +19,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cypressio/cypressio-original.svg",
       "iconBg": "#17202C",
       "cardBg": "linear-gradient(135deg, #17202C 0%, #0D1117 100%)",
-      "category": "E2E Testing"
+      "category": "E2E Testing",
+      "url": "https://www.cypress.io"
     },
     {
       "id": 3,
@@ -28,7 +30,8 @@
       "iconSrc": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/selenium/selenium-original.svg",
       "iconBg": "#43B02A",
       "cardBg": "linear-gradient(135deg, #43B02A 0%, #359A22 100%)",
-      "category": "Automation"
+      "category": "Automation",
+      "url": "https://selenium.dev"
     },
     {
       "id": 4,
@@ -38,7 +41,8 @@
       "iconSrc": "https://testing-library.com/img/octopus-64x64.png",
       "iconBg": "#E33332",
       "cardBg": "linear-gradient(135deg, #E33332 0%, #C12827 100%)",
-      "category": "Unit Testing"
+      "category": "Unit Testing",
+      "url": "https://testing-library.com"
     },
     {
       "id": 5,
@@ -48,7 +52,8 @@
       "iconSrc": "https://www.svgrepo.com/show/354202/postman-icon.svg",
       "iconBg": "#FF6C37",
       "cardBg": "linear-gradient(135deg, #FF6C37 0%, #E55A2B 100%)",
-      "category": "API Testing"
+      "category": "API Testing",
+      "url": "https://www.postman.com"
     },
     {
       "id": 6,
@@ -58,7 +63,8 @@
       "iconSrc": "https://playwright.dev/img/playwright-logo.svg",
       "iconBg": "#2EAD33",
       "cardBg": "linear-gradient(135deg, #2EAD33 0%, #259A2A 100%)",
-      "category": "E2E Testing"
+      "category": "E2E Testing",
+      "url": "https://playwright.dev"
     }
   ]
 }
