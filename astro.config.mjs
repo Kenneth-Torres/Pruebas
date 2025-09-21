@@ -7,7 +7,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   server: {
     host: '0.0.0.0',
-    port: 4321
+    port: 4321,
+    allowedHosts: [
+    '.preview.emergentagent.com' // permite todos los subdominios
+  ]
   },
   vite: {
     plugins: [tailwindcss()],
