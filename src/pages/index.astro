@@ -361,9 +361,9 @@ const mainCategories = [
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       // Initialize Feather icons
-      // if (typeof feather !== 'undefined') {
-      //   feather.replace();
-      // }
+      if (typeof feather !== 'undefined') {
+        feather.replace();
+      }
 
       // Counter animation
       const counters = document.querySelectorAll('.counter');
@@ -430,6 +430,16 @@ const mainCategories = [
           card.style.transform = 'translateY(0) rotateY(0)';
         });
       });
+
+      // Add functionality to CTA buttons
+      const exploreButton = document.querySelector('button:has(span:contains("Explorar Recursos"))');
+      if (exploreButton) {
+        exploreButton.addEventListener('click', () => {
+          document.querySelector('section:nth-of-type(4)').scrollIntoView({ 
+            behavior: 'smooth' 
+          });
+        });
+      }
     });
   </script>
 </Layout>
