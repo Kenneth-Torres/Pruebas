@@ -1,12 +1,73 @@
-<div class="px-0 py-3">
-    <div class="relative">
+<div class="px-0 py-3 relative">
+    <div class="relative search-container">
         <input
             type="text"
-            placeholder="Search..."
-            class="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm text-[var(--text)] text-sm focus:ring-2 focus:ring-[#3034ff] focus:outline-none placeholder-[var(--text-muted)]"
+            placeholder="Buscar recursos, tecnologías, frameworks..."
+            class="w-full pl-10 pr-12 py-3 rounded-xl bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm text-white text-sm focus:ring-2 focus:ring-purple-500 focus:border-purple-500 focus:outline-none placeholder-gray-400 transition-all duration-300 hover:border-slate-600/70"
         />
-        <div class="absolute left-3.5 top-2.5 text-[var(--text-muted)]">
+        <div class="absolute left-3.5 top-3.5 text-gray-400">
             <i data-feather="search" class="h-5 w-5"></i>
         </div>
+        <div class="absolute right-3.5 top-3.5 text-gray-400 opacity-0 transition-opacity duration-200" id="search-loading">
+            <div class="animate-spin">
+                <i data-feather="loader" class="h-5 w-5"></i>
+            </div>
+        </div>
+        <button class="absolute right-3.5 top-3.5 text-gray-400 hover:text-white transition-colors hidden" id="clear-search">
+            <i data-feather="x" class="h-5 w-5"></i>
+        </button>
+    </div>
+    
+    <!-- Search suggestions dropdown -->
+    <div id="search-suggestions" class="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-600 rounded-lg shadow-xl z-50 max-h-48 overflow-y-auto hidden">
+        <!-- Dynamic suggestions will be added here -->
+    </div>
+
+    <!-- Recent searches -->
+    <div class="mt-2 flex flex-wrap gap-2" id="recent-searches">
+        <!-- Recent search tags will be added here -->
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.querySelector('input[type="text"]');
+  const clearButton = document.getElementById('clear-search');
+  const loadingIndicator = document.getElementById('search-loading');
+
+  if (searchInput && clearButton) {
+    // Show/hide clear button
+    searchInput.addEventListener('input', (e) => {
+      const hasValue = e.target.value.length > 0;
+      clearButton.classList.toggle('hidden', !hasValue);
+      
+      // Show loading indicator briefly
+      if (hasValue) {
+        loadingIndicator.style.opacity = '1';
+        setTimeout(() => {
+          loadingIndicator.style.opacity = '0';
+        }, 300);
+      }
+    });
+
+    // Clear search
+    clearButton.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+      clearButton.classList.add('hidden');
+      searchInput.focus();
+    });
+
+    // Enhanced focus effects
+    searchInput.addEventListener('focus', () => {
+      searchInput.parentElement.classList.add('ring-2', 'ring-purple-500/50');
+    });
+
+    searchInput.addEventListener('blur', () => {
+      setTimeout(() => {
+        searchInput.parentElement.classList.remove('ring-2', 'ring-purple-500/50');
+      }, 200);
+    });
+  }
+});
+</script>
