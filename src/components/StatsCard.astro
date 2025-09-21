@@ -1,0 +1,78 @@
+---
+export interface Props {
+  title: string;
+  totalCount: number;
+  categories: string[];
+}
+
+const { title, totalCount, categories } = Astro.props;
+---
+
+<div class="bg-slate-800/50 rounded-xl p-6 border border-slate-700/50 backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300">
+  <div class="flex items-center justify-between mb-4">
+    <h3 class="text-lg font-semibold text-white">{title} Resources</h3>
+    <div class="px-3 py-1 bg-purple-600/20 text-purple-300 rounded-full text-sm font-medium">
+      <span class="counter" data-count={totalCount}>0</span> total
+    </div>
+  </div>
+  
+  <div class="space-y-2 mb-4">
+    {categories.map((category, index) => (
+      <div class="flex items-center justify-between text-sm">
+        <span class="text-gray-300">{category}</span>
+        <div class="flex items-center space-x-2">
+          <div class="w-16 bg-slate-700 rounded-full h-2">
+            <div 
+              class="h-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full transition-all duration-1000" 
+              style={`width: ${Math.random() * 80 + 20}%`}
+              data-animate-delay={index * 200}
+            ></div>
+          </div>
+          <span class="text-gray-400 min-w-[2rem] text-right">
+            <span class="counter" data-count={Math.floor(Math.random() * 10) + 1}>0</span>
+          </span>
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  <div class="pt-4 border-t border-slate-600/50">
+    <div class="flex items-center space-x-2 text-xs text-gray-400">
+      <i data-feather="trending-up" class="w-4 h-4 text-green-400"></i>
+      <span>Actualizado en tiempo real</span>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Animate progress bars
+  const progressBars = document.querySelectorAll('[data-animate-delay]');
+  progressBars.forEach((bar, index) => {
+    setTimeout(() => {
+      bar.style.width = '0%';
+      setTimeout(() => {
+        bar.style.width = bar.style.width || '50%';
+      }, 100);
+    }, index * 200);
+  });
+
+  // Animate counters
+  const counters = document.querySelectorAll('.counter');
+  counters.forEach(counter => {
+    const target = parseInt(counter.getAttribute('data-count'));
+    let current = 0;
+    const increment = target / 30;
+    
+    const timer = setInterval(() => {
+      current += increment;
+      counter.textContent = Math.floor(current);
+      
+      if (current >= target) {
+        counter.textContent = target;
+        clearInterval(timer);
+      }
+    }, 50);
+  });
+});
+</script>
