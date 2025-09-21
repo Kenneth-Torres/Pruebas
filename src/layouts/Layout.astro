@@ -67,5 +67,42 @@ const {
         }
       });
     </script> -->
+    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof feather !== 'undefined') {
+          feather.replace();
+        }
+        
+        // Mobile menu functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeSidebar = document.getElementById('close-sidebar');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.getElementById('overlay');
+        
+        if (mobileMenuButton && sidebar && overlay && closeSidebar) {
+          mobileMenuButton.addEventListener('click', () => {
+            sidebar.classList.add('active');
+            overlay.classList.remove('hidden');
+            mobileMenuButton.style.display = 'none';
+            closeSidebar.style.display = 'block';
+          });
+          
+          closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.add('hidden');
+            mobileMenuButton.style.display = 'block';
+            closeSidebar.style.display = 'none';
+          });
+          
+          overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.add('hidden');
+            mobileMenuButton.style.display = 'block';
+            closeSidebar.style.display = 'none';
+          });
+        }
+      });
+    </script>
   </body>
 </html>
