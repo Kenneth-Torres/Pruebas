@@ -292,7 +292,7 @@ const categoryStats = categories.slice(1); // Exclude 'Todos' for stats
         const searchInput = document.querySelector('input[type="text"]');
         
         let count = 0;
-        if (activeButton && !activeButton.dataset.filter === 'Todos') count++;
+        if (activeButton && activeButton.dataset.filter !== 'Todos') count++;
         if (searchInput && searchInput.value) count++;
         
         if (activeFiltersCount) {
