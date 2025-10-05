@@ -3,6 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import UnsplashCard from "../components/Card.astro";
 import Search from "../components/Search.astro";
 import ButtonFilter from "../components/ButtonFilter.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import StatsCard from "../components/StatsCard.astro";
+import PageNavigation from "../components/PageNavigation.astro";
 
 // Definir el tipo de las cards
 interface Card {
@@ -31,24 +34,54 @@ try {
 
 // Obtener categorías únicas
 const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.category)))];
+const categoryStats = categories.slice(1); // Exclude 'Todos' for stats
 ---
 
 <Layout
   title="DevVault - Herramientas y frameworks para Testing"
 >
   <div class="max-w-[1400px] mx-auto px-4 md:px-0">
-    <!-- Header -->
+    <!-- Breadcrumbs -->
+    <Breadcrumbs currentPage="Testing" />
+
+    <!-- Enhanced Header -->
     <header class="mb-10">
-      <div class="mt-7">
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          🧪 Testing Resources
-        </h1>
-        <p class="text-gray-400 mb-6">
-          Frameworks, bibliotecas y herramientas para asegurar la calidad de tu código con testing automatizado.
-        </p>
+      <div class="bg-gradient-to-r from-orange-900/20 to-red-900/20 rounded-2xl p-8 border border-orange-500/30 backdrop-blur-sm">
+        <div class="flex items-center space-x-3 mb-4">
+          <div class="p-3 bg-orange-600 rounded-xl">
+            <i data-feather="check-circle" class="w-8 h-8 text-white"></i>
+          </div>
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+              🧪 Testing Resources
+            </h1>
+            <p class="text-gray-300 text-lg">
+              Frameworks, bibliotecas y herramientas para asegurar la calidad de tu código con testing automatizado.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Enhanced Search -->
         <Search />
+        
+        <!-- Quick Actions -->
+        <div class="flex flex-wrap gap-3 mt-6">
+          <button class="px-4 py-2 bg-orange-600/20 text-orange-300 rounded-lg hover:bg-orange-600/30 transition-colors border border-orange-500/30">
+            <i data-feather="bookmark" class="w-4 h-4 inline mr-2"></i>
+            Ver Favoritos
+          </button>
+          <button class="px-4 py-2 bg-red-600/20 text-red-300 rounded-lg hover:bg-red-600/30 transition-colors border border-red-500/30">
+            <i data-feather="download" class="w-4 h-4 inline mr-2"></i>
+            Exportar Lista
+          </button>
+          <button class="px-4 py-2 bg-yellow-600/20 text-yellow-300 rounded-lg hover:bg-yellow-600/30 transition-colors border border-yellow-500/30">
+            <i data-feather="share-2" class="w-4 h-4 inline mr-2"></i>
+            Compartir
+          </button>
+        </div>
       </div>
 
+      <!-- Filters -->
       <div class="flex flex-wrap gap-2 mt-6">
         {categories.map(category => (
           <ButtonFilter label={category} />
@@ -56,29 +89,52 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
       </div>
     </header>
 
-    <!-- Contador de recursos -->
-    <section class="mb-6">
-      <div class="flex items-center justify-between">
-        <h2 class="text-2xl md:text-3xl font-semibold text-white">
-          Recursos (<span id="resource-count">{cards.length}</span>)
-        </h2>
-        <button 
-          id="clear-filters"
-          class="text-sm text-gray-400 hover:text-white transition-colors duration-200 hidden"
-        >
-          Limpiar filtros
-        </button>
+    <!-- Stats and Counter Section -->
+    <section class="grid md:grid-cols-4 gap-6 mb-8">
+      <div class="md:col-span-3">
+        <div class="flex items-center justify-between bg-slate-800/30 rounded-xl p-4 border border-slate-700/50 backdrop-blur-sm">
+          <h2 class="text-2xl md:text-3xl font-semibold text-white">
+            Recursos (<span id="resource-count" class="text-orange-400">{cards.length}</span>)
+          </h2>
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2 text-sm text-gray-400">
+              <i data-feather="filter" class="w-4 h-4"></i>
+              <span>Filtros activos: <span id="active-filters">0</span></span>
+            </div>
+            <button 
+              id="clear-filters"
+              class="px-3 py-1.5 text-sm text-gray-400 hover:text-white transition-colors duration-200 hidden bg-red-500/20 hover:bg-red-500/30 rounded-lg border border-red-500/30"
+            >
+              <i data-feather="x" class="w-3 h-3 inline mr-1"></i>
+              Limpiar filtros
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-1">
+        <StatsCard 
+          title="Testing" 
+          totalCount={cards.length}
+          categories={categoryStats}
+        />
       </div>
     </section>
 
-    <!-- Recursos Grid -->
+    <!-- Enhanced Resources Grid -->
     <section>
       <div
         id="cards-container"
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        style="min-height: 400px;"
       >
-        {cards.map((card) => (
-          <div class="card-item" data-category={card.category} data-title={card.title.toLowerCase()} data-description={card.description.toLowerCase()}>
+        {cards.map((card, index) => (
+          <div 
+            class="card-item opacity-0 transform translate-y-4" 
+            data-category={card.category} 
+            data-title={card.title.toLowerCase()} 
+            data-description={card.description.toLowerCase()}
+            style={`animation-delay: ${index * 50}ms`}
+          >
             <UnsplashCard
               title={card.title}
               subtitle={card.subtitle}
@@ -93,51 +149,142 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
         ))}
       </div>
 
-      <!-- Mensaje cuando no hay resultados -->
+      <!-- Enhanced No Results Message -->
       <div id="no-results" class="hidden text-center py-16">
         <div class="mb-6">
-          <i data-feather="search" class="w-16 h-16 mx-auto text-gray-600"></i>
+          <div class="relative inline-block">
+            <i data-feather="search" class="w-20 h-20 text-gray-600 mx-auto"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-full blur-2xl"></div>
+          </div>
         </div>
-        <h3 class="text-xl font-medium text-gray-300 mb-2">No se encontraron recursos</h3>
-        <p class="text-gray-500">Intenta cambiar los filtros o el término de búsqueda</p>
+        <h3 class="text-2xl font-medium text-gray-300 mb-2">No se encontraron recursos</h3>
+        <p class="text-gray-500 mb-4">Intenta cambiar los filtros o el término de búsqueda</p>
+        <button 
+          id="reset-search" 
+          class="px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors"
+        >
+          Restablecer búsqueda
+        </button>
       </div>
     </section>
 
-    <!-- Sección informativa sobre Testing -->
-    <section class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-orange-900/20 to-red-900/20 border border-white/10">
-      <h3 class="text-2xl font-bold text-white mb-4">🎯 ¿Por qué es importante el testing?</h3>
-      <div class="grid md:grid-cols-2 gap-6 text-gray-300">
-        <div>
-          <h4 class="text-lg font-semibold text-white mb-2">Beneficios clave</h4>
-          <ul class="space-y-2 text-sm">
-            <li>• Detecta errores antes de producción</li>
-            <li>• Facilita refactoring seguro</li>
-            <li>• Mejora la calidad del código</li>
-            <li>• Documenta el comportamiento esperado</li>
-          </ul>
+    <!-- Enhanced Testing Guide -->
+    <section class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-orange-900/20 to-red-900/20 border border-white/10 backdrop-blur-sm">
+      <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+        <i data-feather="shield" class="w-6 h-6 mr-2 text-orange-400"></i>
+        🎯 ¿Por qué es importante el testing?
+      </h3>
+      
+      <div class="grid md:grid-cols-2 gap-8 text-gray-300 mb-8">
+        <div class="space-y-6">
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-3 flex items-center">
+              <i data-feather="award" class="w-5 h-5 mr-2 text-green-400"></i>
+              Beneficios clave
+            </h4>
+            <ul class="space-y-3 text-sm">
+              <li class="flex items-center space-x-3">
+                <i data-feather="check-circle" class="w-4 h-4 text-green-400"></i>
+                <span>Detecta errores antes de producción</span>
+              </li>
+              <li class="flex items-center space-x-3">
+                <i data-feather="check-circle" class="w-4 h-4 text-green-400"></i>
+                <span>Facilita refactoring seguro</span>
+              </li>
+              <li class="flex items-center space-x-3">
+                <i data-feather="check-circle" class="w-4 h-4 text-green-400"></i>
+                <span>Mejora la calidad del código</span>
+              </li>
+              <li class="flex items-center space-x-3">
+                <i data-feather="check-circle" class="w-4 h-4 text-green-400"></i>
+                <span>Documenta el comportamiento esperado</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Testing Pyramid -->
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-3 flex items-center">
+              <i data-feather="triangle" class="w-5 h-5 mr-2 text-blue-400"></i>
+              Testing Pyramid
+            </h4>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between p-2 bg-green-600/20 rounded border-l-4 border-green-500">
+                <span class="text-sm">Unit Tests</span>
+                <span class="text-xs text-green-300">70%</span>
+              </div>
+              <div class="flex items-center justify-between p-2 bg-blue-600/20 rounded border-l-4 border-blue-500">
+                <span class="text-sm">Integration Tests</span>
+                <span class="text-xs text-blue-300">20%</span>
+              </div>
+              <div class="flex items-center justify-between p-2 bg-orange-600/20 rounded border-l-4 border-orange-500">
+                <span class="text-sm">E2E Tests</span>
+                <span class="text-xs text-orange-300">10%</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h4 class="text-lg font-semibold text-white mb-2">Tipos de testing</h4>
-          <div class="flex flex-wrap gap-2">
-            <span class="px-2 py-1 bg-blue-600/20 text-blue-300 rounded-md text-xs">Unit Testing</span>
-            <span class="px-2 py-1 bg-green-600/20 text-green-300 rounded-md text-xs">E2E Testing</span>
-            <span class="px-2 py-1 bg-purple-600/20 text-purple-300 rounded-md text-xs">API Testing</span>
-            <span class="px-2 py-1 bg-orange-600/20 text-orange-300 rounded-md text-xs">Automation</span>
+        
+        <div class="space-y-6">
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-3 flex items-center">
+              <i data-feather="layers" class="w-5 h-5 mr-2 text-purple-400"></i>
+              Tipos de testing
+            </h4>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="p-3 bg-blue-600/10 border border-blue-600/20 rounded-lg">
+                <span class="px-2 py-1 bg-blue-600/20 text-blue-300 rounded-md text-xs block text-center">Unit Testing</span>
+              </div>
+              <div class="p-3 bg-green-600/10 border border-green-600/20 rounded-lg">
+                <span class="px-2 py-1 bg-green-600/20 text-green-300 rounded-md text-xs block text-center">E2E Testing</span>
+              </div>
+              <div class="p-3 bg-purple-600/10 border border-purple-600/20 rounded-lg">
+                <span class="px-2 py-1 bg-purple-600/20 text-purple-300 rounded-md text-xs block text-center">API Testing</span>
+              </div>
+              <div class="p-3 bg-orange-600/10 border border-orange-600/20 rounded-lg">
+                <span class="px-2 py-1 bg-orange-600/20 text-orange-300 rounded-md text-xs block text-center">Automation</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Progress tracking -->
+          <div class="p-4 bg-slate-800/50 rounded-lg border border-slate-600/50">
+            <h4 class="text-white font-semibold mb-3">Tu progreso en Testing</h4>
+            <div class="flex items-center space-x-3">
+              <div class="flex-1 bg-slate-700 rounded-full h-2">
+                <div class="h-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full progress-bar" style="width: 45%"></div>
+              </div>
+              <span class="text-sm text-gray-300">45%</span>
+            </div>
+            <p class="text-xs text-gray-400 mt-2">Basado en frameworks aprendidos y tests implementados</p>
           </div>
         </div>
       </div>
-      <div class="flex flex-wrap gap-3 mt-6">
-        <a href="/frontend" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-          Testing Frontend
-        </a>
-        <a href="/backend" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
-          Testing Backend
-        </a>
-        <a href="/mobile" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors">
-          Testing Mobile
-        </a>
+
+      <div class="border-t border-white/10 pt-6">
+        <h4 class="text-lg font-semibold text-white mb-3 flex items-center">
+          <i data-feather="link" class="w-5 h-5 mr-2 text-orange-400"></i>
+          Aplica testing en todas las áreas
+        </h4>
+        <div class="flex flex-wrap gap-3">
+          <a href="/frontend" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2 interactive-hover">
+            <i data-feather="monitor" class="w-4 h-4"></i>
+            <span>Testing Frontend</span>
+          </a>
+          <a href="/backend" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2 interactive-hover">
+            <i data-feather="server" class="w-4 h-4"></i>
+            <span>Testing Backend</span>
+          </a>
+          <a href="/mobile" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2 interactive-hover">
+            <i data-feather="smartphone" class="w-4 h-4"></i>
+            <span>Testing Mobile</span>
+          </a>
+        </div>
       </div>
     </section>
+
+    <!-- Page Navigation -->
+    <PageNavigation currentPage="Testing" />
   </div>
 
   <script>
@@ -146,18 +293,61 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
       if (typeof feather !== 'undefined') {
         feather.replace();
       }
-      
-      // Initialize filters using shared functionality
-      if (typeof window.initializeFilters === 'function') {
-        window.initializeFilters();
-      } else {
-        // Fallback initialization if shared script not loaded
+
+      // Enhanced card entrance animations
+      const cards = document.querySelectorAll('.card-item');
+      cards.forEach((card, index) => {
         setTimeout(() => {
-          if (typeof window.initializeFilters === 'function') {
-            window.initializeFilters();
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0) scale(1)';
+        }, index * 100);
+      });
+
+      // Reset search functionality
+      const resetSearchBtn = document.getElementById('reset-search');
+      if (resetSearchBtn) {
+        resetSearchBtn.addEventListener('click', () => {
+          const searchInput = document.querySelector('input[type="text"]');
+          if (searchInput) {
+            searchInput.value = '';
+            searchInput.dispatchEvent(new Event('input'));
           }
-        }, 100);
+          
+          const clearBtn = document.getElementById('clear-filters');
+          if (clearBtn && !clearBtn.classList.contains('hidden')) {
+            clearBtn.click();
+          }
+        });
       }
+
+      // Update active filters counter
+      function updateActiveFilters() {
+        const activeButton = document.querySelector('.filter-btn.text-white');
+        const activeFiltersCount = document.getElementById('active-filters');
+        const searchInput = document.querySelector('input[type="text"]');
+        
+        let count = 0;
+        if (activeButton && activeButton.dataset.filter !== 'Todos') count++;
+        if (searchInput && searchInput.value) count++;
+        
+        if (activeFiltersCount) {
+          activeFiltersCount.textContent = count;
+        }
+      }
+
+      // Monitor filter changes
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      filterButtons.forEach(button => {
+        button.addEventListener('click', updateActiveFilters);
+      });
+
+      const searchInput = document.querySelector('input[type="text"]');
+      if (searchInput) {
+        searchInput.addEventListener('input', updateActiveFilters);
+      }
+
+      // Initial update
+      updateActiveFilters();
     });
   </script>
 </Layout>
