@@ -1,1 +1,237 @@
 @import "tailwindcss";
+
+/* Enhanced Global Styles for DevVault */
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(139, 92, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.6), 0 0 30px rgba(139, 92, 246, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, 
+    rgba(55, 65, 81, 0.4) 25%, 
+    rgba(75, 85, 99, 0.4) 50%, 
+    rgba(55, 65, 81, 0.4) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Enhanced card animations */
+.card-item {
+  animation: fadeInUp 0.6s ease-out forwards;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-item:hover {
+  transform: translateY(-8px) rotateY(2deg) scale(1.02);
+}
+
+/* Filter button enhancements */
+.filter-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.filter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.filter-btn:hover::before {
+  left: 100%;
+}
+
+.filter-btn:hover {
+  transform: translateY(-2px);
+}
+
+.filter-btn.active {
+  transform: scale(1.05);
+  animation: pulseGlow 2s infinite;
+}
+
+/* Search enhancements */
+.search-container {
+  transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+  transform: scale(1.02);
+}
+
+/* Breadcrumb animations */
+.breadcrumb-item {
+  animation: slideInFromLeft 0.3s ease-out;
+}
+
+/* Stats card animations */
+.stats-card {
+  animation: slideInFromTop 0.5s ease-out;
+}
+
+/* Progress bar animations */
+.progress-bar {
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+/* Enhanced scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(55, 65, 81, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.8);
+}
+
+/* Custom utilities */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px currentColor;
+}
+
+/* Responsive optimizations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus management */
+.focus-visible:focus {
+  outline: 2px solid rgba(139, 92, 246, 0.8);
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(-45deg, #374151, #4B5563, #374151, #4B5563);
+  background-size: 400% 400%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+/* Interactive elements */
+.interactive-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Page transitions */
+.page-enter {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .card-item:hover {
+    transform: none;
+  }
+  
+  .filter-btn:hover {
+    transform: none;
+  }
+  
+  .search-container:focus-within {
+    transform: none;
+  }
+}
