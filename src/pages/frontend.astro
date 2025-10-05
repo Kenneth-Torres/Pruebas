@@ -191,20 +191,23 @@ const categoryStats = categories.slice(1); // Exclude 'Todos' for stats
       </div>
 
       <div class="flex flex-wrap gap-3">
-        <a href="/backend" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2">
+        <a href="/backend" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2 interactive-hover">
           <i data-feather="server" class="w-4 h-4"></i>
           <span>Conectar Backend</span>
         </a>
-        <a href="/testing" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2">
+        <a href="/testing" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2 interactive-hover">
           <i data-feather="check-circle" class="w-4 h-4"></i>
           <span>Testing Frontend</span>
         </a>
-        <a href="/mobile" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2">
+        <a href="/mobile" class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2 interactive-hover">
           <i data-feather="smartphone" class="w-4 h-4"></i>
           <span>Desarrollo Mobile</span>
         </a>
       </div>
     </section>
+
+    <!-- Page Navigation -->
+    <PageNavigation currentPage="Frontend" />
   </div>
 
   <!-- Enhanced CSS animations -->
