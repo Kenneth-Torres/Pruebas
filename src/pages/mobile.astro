@@ -3,6 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import UnsplashCard from "../components/Card.astro";
 import Search from "../components/Search.astro";
 import ButtonFilter from "../components/ButtonFilter.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+import StatsCard from "../components/StatsCard.astro";
+import PageNavigation from "../components/PageNavigation.astro";
 
 // Definir el tipo de las cards
 interface Card {
@@ -31,24 +34,54 @@ try {
 
 // Obtener categorías únicas
 const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.category)))];
+const categoryStats = categories.slice(1); // Exclude 'Todos' for stats
 ---
 
 <Layout
   title="DevVault - Herramientas para desarrollo Mobile"
 >
   <div class="max-w-[1400px] mx-auto px-4 md:px-0">
-    <!-- Header -->
+    <!-- Breadcrumbs -->
+    <Breadcrumbs currentPage="Mobile" />
+
+    <!-- Enhanced Header -->
     <header class="mb-10">
-      <div class="mt-7">
-        <h1 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          📱 Mobile Development
-        </h1>
-        <p class="text-gray-400 mb-6">
-          Frameworks, herramientas y lenguajes para crear aplicaciones móviles nativas y multiplataforma.
-        </p>
+      <div class="bg-gradient-to-r from-pink-900/20 to-rose-900/20 rounded-2xl p-8 border border-pink-500/30 backdrop-blur-sm">
+        <div class="flex items-center space-x-3 mb-4">
+          <div class="p-3 bg-pink-600 rounded-xl">
+            <i data-feather="smartphone" class="w-8 h-8 text-white"></i>
+          </div>
+          <div>
+            <h1 class="text-3xl md:text-4xl font-bold text-white mb-2">
+              📱 Mobile Development
+            </h1>
+            <p class="text-gray-300 text-lg">
+              Frameworks, herramientas y lenguajes para crear aplicaciones móviles nativas y multiplataforma.
+            </p>
+          </div>
+        </div>
+        
+        <!-- Enhanced Search -->
         <Search />
+        
+        <!-- Quick Actions -->
+        <div class="flex flex-wrap gap-3 mt-6">
+          <button class="px-4 py-2 bg-pink-600/20 text-pink-300 rounded-lg hover:bg-pink-600/30 transition-colors border border-pink-500/30">
+            <i data-feather="bookmark" class="w-4 h-4 inline mr-2"></i>
+            Ver Favoritos
+          </button>
+          <button class="px-4 py-2 bg-purple-600/20 text-purple-300 rounded-lg hover:bg-purple-600/30 transition-colors border border-purple-500/30">
+            <i data-feather="download" class="w-4 h-4 inline mr-2"></i>
+            Exportar Lista
+          </button>
+          <button class="px-4 py-2 bg-blue-600/20 text-blue-300 rounded-lg hover:bg-blue-600/30 transition-colors border border-blue-500/30">
+            <i data-feather="share-2" class="w-4 h-4 inline mr-2"></i>
+            Compartir
+          </button>
+        </div>
       </div>
 
+      <!-- Filters -->
       <div class="flex flex-wrap gap-2 mt-6">
         {categories.map(category => (
           <ButtonFilter label={category} />
@@ -56,29 +89,52 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
       </div>
     </header>
 
-    <!-- Contador de recursos -->
-    <section class="mb-6">
-      <div class="flex items-center justify-between">
-        <h2 class="text-2xl md:text-3xl font-semibold text-white">
-          Recursos (<span id="resource-count">{cards.length}</span>)
-        </h2>
-        <button 
-          id="clear-filters"
-          class="text-sm text-gray-400 hover:text-white transition-colors duration-200 hidden"
-        >
-          Limpiar filtros
-        </button>
+    <!-- Stats and Counter Section -->
+    <section class="grid md:grid-cols-4 gap-6 mb-8">
+      <div class="md:col-span-3">
+        <div class="flex items-center justify-between bg-slate-800/30 rounded-xl p-4 border border-slate-700/50 backdrop-blur-sm">
+          <h2 class="text-2xl md:text-3xl font-semibold text-white">
+            Recursos (<span id="resource-count" class="text-pink-400">{cards.length}</span>)
+          </h2>
+          <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2 text-sm text-gray-400">
+              <i data-feather="filter" class="w-4 h-4"></i>
+              <span>Filtros activos: <span id="active-filters">0</span></span>
+            </div>
+            <button 
+              id="clear-filters"
+              class="px-3 py-1.5 text-sm text-gray-400 hover:text-white transition-colors duration-200 hidden bg-red-500/20 hover:bg-red-500/30 rounded-lg border border-red-500/30"
+            >
+              <i data-feather="x" class="w-3 h-3 inline mr-1"></i>
+              Limpiar filtros
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-1">
+        <StatsCard 
+          title="Mobile" 
+          totalCount={cards.length}
+          categories={categoryStats}
+        />
       </div>
     </section>
 
-    <!-- Recursos Grid -->
+    <!-- Enhanced Resources Grid -->
     <section>
       <div
         id="cards-container"
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        style="min-height: 400px;"
       >
-        {cards.map((card) => (
-          <div class="card-item" data-category={card.category} data-title={card.title.toLowerCase()} data-description={card.description.toLowerCase()}>
+        {cards.map((card, index) => (
+          <div 
+            class="card-item opacity-0 transform translate-y-4" 
+            data-category={card.category} 
+            data-title={card.title.toLowerCase()} 
+            data-description={card.description.toLowerCase()}
+            style={`animation-delay: ${index * 50}ms`}
+          >
             <UnsplashCard
               title={card.title}
               subtitle={card.subtitle}
@@ -93,64 +149,142 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
         ))}
       </div>
 
-      <!-- Mensaje cuando no hay resultados -->
+      <!-- Enhanced No Results Message -->
       <div id="no-results" class="hidden text-center py-16">
         <div class="mb-6">
-          <i data-feather="search" class="w-16 h-16 mx-auto text-gray-600"></i>
+          <div class="relative inline-block">
+            <i data-feather="search" class="w-20 h-20 text-gray-600 mx-auto"></i>
+            <div class="absolute inset-0 bg-gradient-to-r from-pink-500/20 to-rose-500/20 rounded-full blur-2xl"></div>
+          </div>
         </div>
-        <h3 class="text-xl font-medium text-gray-300 mb-2">No se encontraron recursos</h3>
-        <p class="text-gray-500">Intenta cambiar los filtros o el término de búsqueda</p>
+        <h3 class="text-2xl font-medium text-gray-300 mb-2">No se encontraron recursos</h3>
+        <p class="text-gray-500 mb-4">Intenta cambiar los filtros o el término de búsqueda</p>
+        <button 
+          id="reset-search" 
+          class="px-6 py-2 bg-pink-600 hover:bg-pink-700 text-white rounded-lg transition-colors"
+        >
+          Restablecer búsqueda
+        </button>
       </div>
     </section>
 
-    <!-- Guía de desarrollo móvil -->
-    <section class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-purple-900/20 to-pink-900/20 border border-white/10">
-      <h3 class="text-2xl font-bold text-white mb-4">🚀 ¿Qué enfoque elegir?</h3>
+    <!-- Enhanced Mobile Development Guide -->
+    <section class="mt-16 p-8 rounded-2xl bg-gradient-to-r from-purple-900/20 to-pink-900/20 border border-white/10 backdrop-blur-sm">
+      <h3 class="text-2xl font-bold text-white mb-4 flex items-center">
+        <i data-feather="zap" class="w-6 h-6 mr-2 text-pink-400"></i>
+        🚀 ¿Qué enfoque elegir?
+      </h3>
+      
       <div class="grid md:grid-cols-3 gap-6 text-gray-300 mb-6">
-        <div class="p-4 rounded-lg bg-blue-900/20 border border-blue-800/30">
-          <h4 class="text-lg font-semibold text-blue-300 mb-2">Cross-Platform</h4>
-          <p class="text-sm mb-3">Un código para iOS y Android</p>
-          <div class="space-y-1 text-xs">
-            <div>• React Native</div>
-            <div>• Flutter</div>
-            <div>• Xamarin</div>
+        <div class="p-6 rounded-xl bg-blue-900/20 border border-blue-800/30 hover:border-blue-600/50 transition-colors">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3">
+              <i data-feather="layers" class="w-5 h-5 text-white"></i>
+            </div>
+            <h4 class="text-lg font-semibold text-blue-300">Cross-Platform</h4>
+          </div>
+          <p class="text-sm mb-4 text-gray-400">Un código para iOS y Android</p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center space-x-2">
+              <i data-feather="check" class="w-4 h-4 text-green-400"></i>
+              <span>React Native</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i data-feather="check" class="w-4 h-4 text-green-400"></i>
+              <span>Flutter</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i data-feather="check" class="w-4 h-4 text-green-400"></i>
+              <span>Xamarin</span>
+            </div>
           </div>
         </div>
-        <div class="p-4 rounded-lg bg-green-900/20 border border-green-800/30">
-          <h4 class="text-lg font-semibold text-green-300 mb-2">Native iOS</h4>
-          <p class="text-sm mb-3">Máximo rendimiento en iOS</p>
-          <div class="space-y-1 text-xs">
-            <div>• Swift</div>
-            <div>• Objective-C</div>
-            <div>• SwiftUI</div>
+        
+        <div class="p-6 rounded-xl bg-green-900/20 border border-green-800/30 hover:border-green-600/50 transition-colors">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center mr-3">
+              <i data-feather="apple" class="w-5 h-5 text-white"></i>
+            </div>
+            <h4 class="text-lg font-semibold text-green-300">Native iOS</h4>
+          </div>
+          <p class="text-sm mb-4 text-gray-400">Máximo rendimiento en iOS</p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center space-x-2">
+              <i data-feather="check" class="w-4 h-4 text-green-400"></i>
+              <span>Swift</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i data-feather="check" class="w-4 h-4 text-green-400"></i>
+              <span>Objective-C</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i data-feather="check" class="w-4 h-4 text-green-400"></i>
+              <span>SwiftUI</span>
+            </div>
           </div>
         </div>
-        <div class="p-4 rounded-lg bg-purple-900/20 border border-purple-800/30">
-          <h4 class="text-lg font-semibold text-purple-300 mb-2">Native Android</h4>
-          <p class="text-sm mb-3">Optimizado para Android</p>
-          <div class="space-y-1 text-xs">
-            <div>• Kotlin</div>
-            <div>• Java</div>
-            <div>• Jetpack Compose</div>
+        
+        <div class="p-6 rounded-xl bg-purple-900/20 border border-purple-800/30 hover:border-purple-600/50 transition-colors">
+          <div class="flex items-center mb-3">
+            <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center mr-3">
+              <i data-feather="android" class="w-5 h-5 text-white"></i>
+            </div>
+            <h4 class="text-lg font-semibold text-purple-300">Native Android</h4>
+          </div>
+          <p class="text-sm mb-4 text-gray-400">Optimizado para Android</p>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center space-x-2">
+              <i data-feather="check" class="w-4 h-4 text-green-400"></i>
+              <span>Kotlin</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i data-feather="check" class="w-4 h-4 text-green-400"></i>
+              <span>Java</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <i data-feather="check" class="w-4 h-4 text-green-400"></i>
+              <span>Jetpack Compose</span>
+            </div>
           </div>
         </div>
       </div>
       
+      <!-- Progress tracking -->
+      <div class="mb-6 p-4 bg-slate-800/50 rounded-lg border border-slate-600/50">
+        <h4 class="text-white font-semibold mb-3">Tu progreso en Mobile Development</h4>
+        <div class="flex items-center space-x-3">
+          <div class="flex-1 bg-slate-700 rounded-full h-2">
+            <div class="h-2 bg-gradient-to-r from-pink-500 to-rose-500 rounded-full progress-bar" style="width: 58%"></div>
+          </div>
+          <span class="text-sm text-gray-300">58%</span>
+        </div>
+        <p class="text-xs text-gray-400 mt-2">Basado en frameworks explorados y apps desarrolladas</p>
+      </div>
+
       <div class="border-t border-white/10 pt-6">
-        <h4 class="text-lg font-semibold text-white mb-3">Recursos relacionados</h4>
+        <h4 class="text-lg font-semibold text-white mb-3 flex items-center">
+          <i data-feather="link" class="w-5 h-5 mr-2 text-pink-400"></i>
+          Recursos relacionados
+        </h4>
         <div class="flex flex-wrap gap-3">
-          <a href="/backend" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors">
-            APIs para Mobile
+          <a href="/backend" class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2 interactive-hover">
+            <i data-feather="server" class="w-4 h-4"></i>
+            <span>APIs para Mobile</span>
           </a>
-          <a href="/testing" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors">
-            Testing Mobile
+          <a href="/testing" class="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2 interactive-hover">
+            <i data-feather="check-circle" class="w-4 h-4"></i>
+            <span>Testing Mobile</span>
           </a>
-          <a href="/frontend" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors">
-            Web Mobile
+          <a href="/frontend" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-300 hover:scale-105 flex items-center space-x-2 interactive-hover">
+            <i data-feather="monitor" class="w-4 h-4"></i>
+            <span>Web Mobile</span>
           </a>
         </div>
       </div>
     </section>
+
+    <!-- Page Navigation -->
+    <PageNavigation currentPage="Mobile" />
   </div>
 
   <script>
@@ -159,18 +293,61 @@ const categories = ['Todos', ...Array.from(new Set(cards.map(card => card.catego
       if (typeof feather !== 'undefined') {
         feather.replace();
       }
-      
-      // Initialize filters using shared functionality
-      if (typeof window.initializeFilters === 'function') {
-        window.initializeFilters();
-      } else {
-        // Fallback initialization if shared script not loaded
+
+      // Enhanced card entrance animations
+      const cards = document.querySelectorAll('.card-item');
+      cards.forEach((card, index) => {
         setTimeout(() => {
-          if (typeof window.initializeFilters === 'function') {
-            window.initializeFilters();
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0) scale(1)';
+        }, index * 100);
+      });
+
+      // Reset search functionality
+      const resetSearchBtn = document.getElementById('reset-search');
+      if (resetSearchBtn) {
+        resetSearchBtn.addEventListener('click', () => {
+          const searchInput = document.querySelector('input[type="text"]');
+          if (searchInput) {
+            searchInput.value = '';
+            searchInput.dispatchEvent(new Event('input'));
           }
-        }, 100);
+          
+          const clearBtn = document.getElementById('clear-filters');
+          if (clearBtn && !clearBtn.classList.contains('hidden')) {
+            clearBtn.click();
+          }
+        });
       }
+
+      // Update active filters counter
+      function updateActiveFilters() {
+        const activeButton = document.querySelector('.filter-btn.text-white');
+        const activeFiltersCount = document.getElementById('active-filters');
+        const searchInput = document.querySelector('input[type="text"]');
+        
+        let count = 0;
+        if (activeButton && activeButton.dataset.filter !== 'Todos') count++;
+        if (searchInput && searchInput.value) count++;
+        
+        if (activeFiltersCount) {
+          activeFiltersCount.textContent = count;
+        }
+      }
+
+      // Monitor filter changes
+      const filterButtons = document.querySelectorAll('.filter-btn');
+      filterButtons.forEach(button => {
+        button.addEventListener('click', updateActiveFilters);
+      });
+
+      const searchInput = document.querySelector('input[type="text"]');
+      if (searchInput) {
+        searchInput.addEventListener('input', updateActiveFilters);
+      }
+
+      // Initial update
+      updateActiveFilters();
     });
   </script>
 </Layout>
